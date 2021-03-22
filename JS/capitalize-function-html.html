@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Page Title</title>
+  <meta charset="UTF-8"/>
+</head>
+<body>
+  <script>
+    // Your JavaScript goes here!
+
+    const yourString = prompt('Please enter single word');
+
+    capString(yourString);
+
+    function capString(yourString) {
+
+      if (!isNaN(yourString)) {
+        console.log('Please enter a string, not a number.');
+      } else {
+        let lwrStr = yourString.toLowerCase();
+
+        let capLet = lwrStr.slice(0, 1);
+        capLet = capLet.toUpperCase();
+        let newLwrStr = lwrStr.slice(1);
+        let finalStr = 'Your new string: ' + capLet + newLwrStr;
+        console.log(finalStr);
+      }
+    }
+
+  </script>
+</body>
+</html>

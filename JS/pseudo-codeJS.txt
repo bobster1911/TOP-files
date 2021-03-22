@@ -1,0 +1,20 @@
+3.20.21 - FizzBuzz
+==================
+
+user inputs a number
+
+>function checks that input is a number
+>for loop cycles through all numbers up until the number that was entered
+	>for each number, check:	
+		>is it a multiple of both 3 and 5?
+			>fizzbuzz
+		>is it a multiple of 3?
+			>fizz
+		>is it a multiple of 5?
+			>buzz
+		>else
+			>console.log(number);
+
+
+
+

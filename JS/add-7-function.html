@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Page Title</title>
+  <meta charset="UTF-8"/>
+</head>
+<body>
+  <script>
+    // Your JavaScript goes here!
+    
+    number = prompt('Please choose a number: ');
+    if (isNaN(number)) {
+      const para = document.createElement('p');
+      document.body.appendChild(para);
+      para.textContent = 'Please enter a number.';
+    } else {
+      const para = document.createElement('p');
+      document.body.appendChild(para);
+      para.textContent = 'You entered ' + number + '. ' + 'Your new number is: ' + addSeven(number) + '. ';
+    }
+
+
+    function addSeven(number) {
+      newNumber = parseInt(number) + parseInt(7);
+      return newNumber;
+    }
+
+  </script>
+</body>
+</html>

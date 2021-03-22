@@ -1,0 +1,43 @@
+Day 1 - 3.10.21
+===============
+
+I am currently going through the Javascript fundamentals, learning about datatypes and such. This is mostly content I have covered before but it is a nice refresh. Not the most exciting but I am going to persevere and stick to it. I just learned about template literals which I have not read about before so I am excited to implement these.
+
+I'm going to end the day with some revision of conditionals and then this should set me up for a realm of coding I haven't ventured to far into before. I'm trying my best not to get burnt out from the boring introductory stuff. I just have to think of it like the boring grindy levels in MMOs, haha.
+
+Day 2 - 3.11.21
+===============
+
+Today I glanced through some more conditionals and went over the logical operators. Towards the end I was starting to write some if ... else statements for simple tasks such as prompting a login box and checking for credentials, a non-hollowed out version but nonetheless it was nice to actually start coding something.
+
+I didn't get a whole lot done today but I have decided that I'm going to try and study until 8pm and have that as the cutoff so I can have an hour or two in the evenings to do something mindless.
+
+Soon I think it is going to be time to begin a project and wrap up some things together and get stuck in. I am going to run through what I can with TOP before it inevitably has me start a coding project. Depending on the project I will be making sure to think through and plan beforehand so that I am coding something I am interested in, that will challenge me and be useful.
+
+Day 3 - 3.13.21
+===============
+
+I am realising that even though some of the content is not worth writing out every time, I really just need to be consistent with my reading/studying so that I don't have to revise the basics every time. Even if I don't study for hours on end every day, at least if I can keep up my consistency then I think I can really start to learn code like I want to.
+
+I am currently working through the 'foundations' course on The Odin Project and then I plan to start the full stack course for JavaScript. I believe these two courses will allow me to know enough to embark on my own projects and start learning seriously.
+
+Day 4 - 3.14.21
+===============
+
+Happy Pi Day future self reading back at these check-ins. Today I only studied a little. I had a look at the Dev Tool basics #2 and it's actually really cool how you can change classes and elements so seamlessly through the developer console. I am keen to get better at using the developer tools and am looking forward to starting a project where I can start using them. Right now I am just trying my best to slug through the boring reading. Hopefully this week will be nice and productive in terms of my studies.
+
+Day 5 - 3.18.21
+===============
+
+Reading about functions, scopes and return values. About to get to the good stuff. Most of this I already know but it is nice to refresh. My plan is to start reading these articles on my phone also allowing me to study anywhere. I don't think I previously logged some of the times over the past few days but I got through the articles about using the developer console for CSS and JS. Really cool what you can do with it and I look forward to becoming even more familiar. I covered function basics and the importance of functions in making code more readable. I also thought it was really cool how programmers create and store functions in a library so they can re-use them in the future. The idea of building your own personal toolkit overtime is pretty awesome. I am going to resume with numero 5 tomorrow.
+
+Day 6 - 3.19.21
+===============
+
+Starting the day by finishing off reading about functions. Finished off by completing some simple function building and reading about the next task which is FizzBuzz. Creating a function that takes a number input by the user and then returning all of the numbers before said number whilst writing 'fizz' for multiples of 3, 'buzz' for multiples of five and 'fizzbuzz' for multiples of both.
+
+Day 7 - 3.20.21
+===============
+
+
+

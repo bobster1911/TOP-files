@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Page Title</title>
+  <meta charset="UTF-8"/>
+</head>
+<body>
+  <script>
+    // Your JavaScript goes here!
+   entry = prompt("who is there?");
+   password = null;
+
+   if (!(entry === "Admin")) {
+     alert("Invalid username.");
+   }
+
+   else {
+     password = prompt("Please enter your password: ");
+      if (password === "password") {
+        alert("Congratulations, you are now logged in.")
+      }
+
+      else {
+        alert("Uh oh, looks like you forgot your password.")
+      }
+   }
+
+  </script>
+</body>
+</html>

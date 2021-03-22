@@ -1,0 +1,16 @@
+"" + 1 + 0 = 10 string [o]
+"" - 1 + 0 = 0 string [x] -1 number
+true + false = false [x] 1 number
+6 / "3" = 2 number [o] 
+"2" * "3" = 6 number [o]
+4 + 5 + "px" = 9px string [o]
+"$" + 4 + 5 = $45 string [o]
+"4" - 2 = 2 number [o] 
+"4px" - 2 = 2px string [o]
+"  -9  " + 5 = 4 string [x] -9   5 string
+"  -9  " - 5 = -16 [x] -14 mathhhh
+null + 1 = 1 number [o]
+undefined + 1 = NaN [o]
+" \t \n" - 2 = NaN [x] -2 number
+
+total: 9/14]

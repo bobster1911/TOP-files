@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Page Title</title>
+  <meta charset="UTF-8"/>
+</head>
+<body>
+  <script>
+    // Your JavaScript goes here!
+    const yourStr = prompt('Enter your string here: ');
+
+    function lastLetter(word) {
+      if (!isNaN(word)) {
+        console.log('Please enter a single word.');
+      } else {
+        let strLen = word.length;
+        let lastLetterIndex = (strLen - 1);
+        console.log(word[lastLetterIndex]);
+      }
+    }
+
+    lastLetter(yourStr);
+
+  </script>
+</body>
+</html>
