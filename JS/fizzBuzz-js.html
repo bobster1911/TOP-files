@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Page Title</title>
+  <meta charset="UTF-8"/>
+</head>
+<body>
+  <script>
+    // Your JavaScript goes here!
+    let yourNum = prompt('Enter a number: ');
+
+    inputVal(yourNum);
+    
+
+    //FUNCTIONS
+
+    // Input Validation
+    function inputVal(number) {
+      if (isNaN()) {
+        console.log('Please enter a number.');
+      } else {
+          evalNum(number);
+      }
+    }
+
+    // Print Numbers
+
+    function printNumbers(number) {
+      for (i = yourNum; i > 0; i--) {
+        evalNum(i);
+      }
+    }
+
+    // Determine Output
+    function evalNum(number) {
+      if (((number % 5) !== 0) && ((number % 3) !== 0)) {
+          console.log(number);
+      } else if (((number % 3) === 0) && ((number % 5) === 0)) {
+          console.log('FizzBuzz');
+      } else if ((number % 3) === 0) {
+          console.log('Fizz');
+      } else if ((number % 5) === 0) {
+          console.log('Buzz');
+      } else {
+        console.log('Something must have gone terribly wrong.');
+      }
+    }
+
+  </script>
+</body>
+</html>
