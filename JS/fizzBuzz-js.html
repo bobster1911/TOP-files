@@ -16,19 +16,19 @@
 
     // Input Validation
     function inputVal(number) {
-      if (isNaN()) {
+      if (isNaN(number)) {
         console.log('Please enter a number.');
       } else {
-          evalNum(number);
+          printNumbers(number);
       }
     }
 
     // Print Numbers
 
     function printNumbers(number) {
-      for (i = yourNum; i > 0; i--) {
+      for (let i = number; i > 0; i--) {
         evalNum(i);
-      }
+      } 
     }
 
     // Determine Output
