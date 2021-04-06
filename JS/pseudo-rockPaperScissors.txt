@@ -1,0 +1,13 @@
+Ask user if they would like to play rock, paper scissors
+
+Single game or 5 point game
+
+Choose option
+
+Randomize output for computer
+
+compare choice vs. computer random choice
+
+1 point: You win or lose.
+
+5 point: userScore OR computerScore +1, continue until gameScore == 5.
