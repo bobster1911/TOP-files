@@ -7,15 +7,46 @@
 <body>
   <script>
     // Your JavaScript goes here!
-    age = 13;
+    
+    // Prompt for single round, three round or five round game
+    console.log({"Rock, Paper, Scissors!"}, "\n", {"1 - Start"}, "\n", {"2 - Exit"});
 
-    if (age >= 14 && age <= 90) {
-      alert("The age is within the range.");
+    let selection = prompt("Enter your selection: ");
+    // selection must be 1 or 2
+    if (selection !== 1 && selection !== 2) {
+      console.log("You must enter a valid selection number.")
+      //find a way to make this keep looping until the correct answer has been entered.
+    } else if (selection == 1) {
+      console.log({"Please select game type: "}, "\n", {"1 - Single Game"}, "\n", {"2 - Triple Game"}, "\n", {"3 - Quatruple Game"});
+      // Function - Take the number and execute the game
+    } else if (selection == 2) {
+      console.log("Now exiting...");
     }
+    // if statements for each selection, else exit and end
+    function playGame(selection) {
+      let (number == selection);
+      let (PlayerScore = 0);
+      let (ComputerScore = 0);
+      for (i = 0; i < number; i++) {
+        let choice = prompt({"1 - Rock"}, "\n", {"2 - Paper"}, "\n", {"3 - Scissors"}, "\n", "Please Enter Your Selection: ");
+        if (choice == 1) {
+          choice === 1;
+        }
+      }
 
-    else {
-      alert("The age is not within the range.");
+      if (selection == 1) {
+        //Need a while interation that will iterate based on the function parameter value.
+
+      } else if (selection == 2) {
+        
+      } else if (selection == 3) {
+        
+      }
     }
+    // function for taking choice of rock, paper or scissors and then generating a random choice for the computer and then determining whether you win, lose or whether it 
+    // is a tie.
+
+    // I will need to have two different functions for single games and one for the five and three round games.
 
   </script>
 </body>
