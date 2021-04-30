@@ -6,27 +6,48 @@
 </head>
 <body>
   <script>
-    
+// === TO-DO ===
+
 // function to call the menu screen
+
 // - this can be used when user wants to change game mode.
 
 // implement ability to select a single, triple or quintuple game.
 
+// === === ===
+
 
 
 function menuCall() {
-   console.log("1 - Start", "\n", "2 - Exit", "\n");
+    let endCode = 0;
+    
+    while (endCode == 0) {
+        console.log("1 - Start", "\n", "2 - Exit", "\n");
+    
+        let selection = prompt("Enter Selection: ");
 
-   let selection = prompt("Enter Selection: ");
+        if ((selection != 1) && (selection != 2)) {
+            console.log("Please enter one of the selections.");
+        } else if (selection == 1) {
+            let numRounds = prompt("Please select game mode.", "\n", "1 -- Single", "\n", "2 -- Triple", "\n", "3 -- Quintuple", "\n", "Enter Selection: ");
+            if (numRounds == 1) {
 
-if ((selection != 1) && (selection != 2)) {
-    console.log("Please enter one of the selections.");
-} else if (selection == 1) {
-    playGame(); // function call
-    // add prompt here to play another game or break and quit
-} else if (selection == 2) {
-    console.log("Thanks and have a nice day :-)");
-}
+            }
+
+            if (numRounds == 2) {
+
+            }
+
+            if (numRounds == 3) {
+                
+            }
+            playGame(); // function call
+            // add prompt here to play another game or break and quit
+        } else if (selection == 2) {
+            console.log("Thanks and have a nice day :-)");
+            endCode = 1;
+        }
+    }
 
 }
 
@@ -98,10 +119,6 @@ function playGame() {
     }
 
 }
-
-
- 
-
    
   </script>
 </body>
