@@ -9,9 +9,6 @@ function launch() {
             addText(text, countdown);
         }
     }
-
-
-
     //document.getElementById("countdown").innerHTML = 'Lift off!';
 } 
 
