@@ -2,20 +2,28 @@
     background-color: limegreen;
     border-style: solid;
     border-color: black;
+    flex-grow: 1;
 }
 
 .coral-box {
     background-color: coral;
     border-style: solid;
     border-color: black;
+    flex-grow: 1;
 }
 
 .blue-box {
     background-color: lightskyblue;
     border-style: solid;
     border-color: black;
+    flex-grow: 1;
 }
 
 #container {
     display: flex;
+    justify-content: space-around;
+    align-items: stretch;
+    border-style: solid;
+    border-color: black;
+    background-color: lightsalmon;
 }
