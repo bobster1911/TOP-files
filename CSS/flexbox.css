@@ -1,29 +1,46 @@
 .grn-box {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
     background-color: limegreen;
     border-style: solid;
     border-color: black;
-    flex-grow: 1;
+    width: 100px;
+    height: 100px;
+    margin: 5px;
 }
 
 .coral-box {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
     background-color: coral;
     border-style: solid;
     border-color: black;
-    flex-grow: 1;
+    width: 100px;
+    height: 100px;
+    margin: 5px;
 }
 
+
 .blue-box {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
     background-color: lightskyblue;
     border-style: solid;
     border-color: black;
-    flex-grow: 1;
+    width: 100px;
+    height: 100px;
+    margin: 5px;
 }
+
 
 #container {
     display: flex;
-    justify-content: space-around;
-    align-items: stretch;
+    flex-wrap: wrap;
     border-style: solid;
     border-color: black;
     background-color: lightsalmon;
+    padding: 5px;
 }
