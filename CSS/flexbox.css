@@ -1,0 +1,21 @@
+.grn-box {
+    background-color: limegreen;
+    border-style: solid;
+    border-color: black;
+}
+
+.coral-box {
+    background-color: coral;
+    border-style: solid;
+    border-color: black;
+}
+
+.blue-box {
+    background-color: lightskyblue;
+    border-style: solid;
+    border-color: black;
+}
+
+#container {
+    display: flex;
+}
