@@ -4,5 +4,13 @@ body {
 
 
 .game-button {
-    font-size: 10vh;
+    
+}
+
+.hide {
+    display: none;
+}
+
+.roundSelect {
+    font-size: 20px;
 }
