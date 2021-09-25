@@ -24,3 +24,10 @@ btn1.addEventListener('click', function (e) {
 });
 
 div1.appendChild(btn1);
+
+let selected = document.getElementById('para1');
+para1.addEventListener('mouseover', function (e) {
+    e.target.classList.add('touched');
+});
+
+

@@ -1,0 +1,145 @@
+#master-div {
+    display: grid;
+    grid-template-columns: auto 90vh auto;
+    grid-template-rows: auto 90vh auto;
+    grid-template-areas:
+    "header header header"
+    "left-side etch right-side"
+    "footer footer footer";
+}
+
+#etch-div {
+    grid-area: etch;
+    background-color: coral;
+    display: grid;
+    grid-template-columns: repeat(16, 1fr);
+    grid-template-rows: repeat(16, 1fr);
+}
+
+header {
+    display: grid;
+    place-items: center;
+}
+
+footer {
+    display: grid;
+    place-items: center;
+}
+
+.cell {
+    border-style: solid;
+    border-color: black;
+}
+
+#cell1 {
+    grid-column-start: 1;
+    grid-column-end: 1;
+    grid-row-start: 1;
+    grid-row-end: 1;
+}
+
+#cell2 {
+    grid-column-start: 2;
+    grid-column-end: 2;
+    grid-row-start: 1;
+    grid-row-end: 1;
+}
+
+#cell3 {
+    grid-column-start: 3;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 1;
+    
+}
+
+#cell4 {
+    grid-column-start: 4;
+    grid-column-end: 4;
+    grid-row-start: 1;
+    grid-row-end: 1;
+}
+
+#cell5 {
+    grid-column-start: 5;
+    grid-column-end: 5;
+    grid-row-start: 1;
+    grid-row-end: 1;
+}
+
+#cell6 {
+    grid-column-start: 6;
+    grid-column-end: 6;
+    grid-row-start: 1;
+    grid-row-end: 1;
+}
+
+#cell7 {
+    grid-column-start: 7;
+    grid-column-end: 7;
+    grid-row-start: 1;
+    grid-row-end: 1;
+}
+
+#cell8 {
+    grid-column-start: 8;
+    grid-column-end: 8;
+    grid-row-start: 1;
+    grid-row-end: 1;
+}
+
+#cell9 {
+    grid-column-start: 9;
+    grid-column-end: 9;
+    grid-row-start: 1;
+    grid-row-end: 1;
+}
+
+#cell10 {
+    grid-column-start: 10;
+    grid-column-end: 10;
+    grid-row-start: 1;
+    grid-row-end: 1;
+}
+
+#cell11 {
+    grid-column-start: 11;
+    grid-column-end: 11;
+    grid-row-start: 1;
+    grid-row-end: 1;
+}
+
+#cell12 {
+    grid-column-start: 12;
+    grid-column-end: 12;
+    grid-row-start: 1;
+    grid-row-end: 1;
+}
+
+#cell13 {
+    grid-column-start: 13;
+    grid-column-end: 13;
+    grid-row-start: 1;
+    grid-row-end: 1;
+}
+
+#cell14 {
+    grid-column-start: 14;
+    grid-column-end: 14;
+    grid-row-start: 1;
+    grid-row-end: 1;
+}
+
+#cell15 {
+    grid-column-start: 15;
+    grid-column-end: 15;
+    grid-row-start: 1;
+    grid-row-end: 1;
+}
+
+#cell16 {
+    grid-column-start: 16;
+    grid-column-end: 16;
+    grid-row-start: 1;
+    grid-row-end: 1;
+}
