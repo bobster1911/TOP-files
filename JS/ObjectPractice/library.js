@@ -25,10 +25,17 @@ function addBookToLibrary() {
 function refreshBooks() {
     //iterate through the array and create a div for each one.
     let numBooks = myLibrary.length;
+    //if length = 0 -- no books in the library.
+    if (numBooks == 0) {
+        let paraErr = document.createElement('p');
+        paraErr.textContent = 'No books found in the library.'
+        document.body.appendChild(paraErr);
+    }
+    //create array for variable names for said div elements.
     for (i = 0;i <= numBooks;i++) {
-        let ''div' + i' = document.createElement('div');
-        div[i].textContent = myLibrary[i];
-        document.body.appendChild(div[i]);
+        divName = document.createElement('div');
+        divName.textContent = myLibrary[i];
+        document.body.appendChild(divName);
     }
 }
 
