@@ -1,7 +1,8 @@
 let myLibrary = [];
 
-function Book(title, pages, read) {
+function Book(title, author, pages, read) {
     this.title = title;
+    this.author = author;
     this.numberOfPages = pages;
     this.readYet = read;
 }
@@ -12,17 +13,21 @@ function addBookToLibrary() {
 
     //ask for book information
     let title = prompt('Title of book: ');
+    let author = prompt('Author: ');
     let pages = prompt('Number of pages: ');
     let read = prompt('Read or Unread: ');
        
     //create object with given information
-    let book1 = new Book(title, pages, read);
+    let book1 = new Book(title, author, pages, read);
     //add new object to libraryArray
     myLibrary.push(book1);
 
 }
 
 function refreshBooks() {
+
+    console.log(myLibrary);
+
     //iterate through the array and create a div for each one.
     let numBooks = myLibrary.length;
     //if length = 0 -- no books in the library.
@@ -32,10 +37,27 @@ function refreshBooks() {
         document.body.appendChild(paraErr);
     }
     //create array for variable names for said div elements.
+    let bookDiv = [];
+    for (i = 0;i <= numBooks; i++) {
+        bookDiv[i] = 'book' + i;
+    }
+
+    let bookInfo = [];
+    for (i = 0;i <= numBooks; i++) {
+        bookInfo[i] = 'book' + i;
+    }
+
+    //create div for book object
     for (i = 0;i <= numBooks;i++) {
-        divName = document.createElement('div');
-        divName.textContent = myLibrary[i];
-        document.body.appendChild(divName);
+        //add empty div element
+        bookDiv[i] = document.createElement('div');
+        document.body.appendChild(bookDiv[i]);
+        //append object information to div
+        bookInfo[i] = document.createElement('p');
+        console.log('TEST: ' + myLibrary[i])
+        bookInfo[i].textContent = 'Title: ' + myLibrary[i].title + '\n' + 'Author: ' + myLibrary[i].author + '\n' +
+        'Pages: ' + myLibrary[i].numberOfPages + '\n' + 'Read: ' + myLibrary[i].readYet + '\n';
+
     }
 }
 
@@ -53,6 +75,12 @@ let button1 = document.createElement('button');
 button1.textContent = 'Add a book';
 document.body.appendChild(button1);
 button1.addEventListener("click", function() {addBookToLibrary();});
+
+//refresh button to update the library contents
+let button2 = document.createElement('button');
+button2.textContent = 'Update';
+document.body.appendChild(button2);
+button2.addEventListener("click", function() {refreshBooks();});
 
 
 
