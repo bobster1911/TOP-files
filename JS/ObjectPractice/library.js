@@ -1,4 +1,16 @@
+// --- GLOBAL ---
+
 let myLibrary = [];
+let bookDom = [];
+let numBooks = countBooks();
+
+
+// --- FUNCTIONS ---
+
+function countBooks() {
+    let n = myLibrary.length;
+    return n;
+}
 
 function Book(title, author, pages, read) {
     this.title = title;
@@ -26,42 +38,16 @@ function addBookToLibrary() {
 
 function refreshBooks() {
 
-    console.log(myLibrary);
-
-    //iterate through the array and create a div for each one.
-    let numBooks = myLibrary.length;
-    //if length = 0 -- no books in the library.
-    if (numBooks == 0) {
-        let paraErr = document.createElement('p');
-        paraErr.textContent = 'No books found in the library.'
-        document.body.appendChild(paraErr);
-    }
-    //create array for variable names for said div elements.
-    let bookDiv = [];
-    for (i = 0;i <= numBooks; i++) {
-        bookDiv[i] = 'book' + i;
-    }
-
-    let bookInfo = [];
-    for (i = 0;i <= numBooks; i++) {
-        bookInfo[i] = 'book' + i;
-    }
-
-    //create div for book object
-    for (i = 0;i <= numBooks;i++) {
-        //add empty div element
-        bookDiv[i] = document.createElement('div');
-        document.body.appendChild(bookDiv[i]);
-        //append object information to div
-        bookInfo[i] = document.createElement('p');
-        console.log('TEST: ' + myLibrary[i])
-        bookInfo[i].textContent = 'Title: ' + myLibrary[i].title + '\n' + 'Author: ' + myLibrary[i].author + '\n' +
-        'Pages: ' + myLibrary[i].numberOfPages + '\n' + 'Read: ' + myLibrary[i].readYet + '\n';
-
+    // cycle through myLibrary array
+    for (i = 0;i <= (numBooks- 1); i++) {
+        let bookDom[i] = document.createElement('div');
+        bookDom[i].textContent = 'test';
+        document.body.appendChild(bookDom[i]);
     }
 }
 
-//website fluffies
+// --- SITE FLUFF ---
+
 let title1 = document.createElement('H1');
 title1.textContent = 'Library App';
 document.body.appendChild(title1);
