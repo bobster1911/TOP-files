@@ -1,4 +1,16 @@
+// --- GLOBAL ---
+
 let myLibrary = [];
+let bookDom = [];
+let numBooks = countBooks();
+
+
+// --- FUNCTIONS ---
+
+function countBooks() {
+    let n = myLibrary.length;
+    return n;
+}
 
 //iterate through the array and create a div for each one.
 let numBooks = (myLibrary.length - 1);
@@ -54,10 +66,25 @@ function addBookToLibrary() {
 
 }
 
-function refreshBooks(numBooks) {
-    
+function refreshBooks() {
+
+    // cycle through myLibrary array
+    for (i = 0;i <= (numBooks- 1); i++) {
+        let bookDom[i] = document.createElement('div');
+        bookDom[i].textContent = 'test';
+        document.body.appendChild(bookDom[i]);
+    }
 }
 
+// --- SITE FLUFF ---
+
+let title1 = document.createElement('H1');
+title1.textContent = 'Library App';
+document.body.appendChild(title1);
+
+let para1 = document.createElement('p');
+para1.textContent = 'Click the button below to add a book to the library.';
+document.body.appendChild(para1);
 
 
 
