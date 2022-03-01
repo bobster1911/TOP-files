@@ -48,11 +48,26 @@ function refreshBooks() {
     //create divs to display each of the book objects.
     for (i = 0;i <= (numBooks- 1); i++) { 
         
-        bookDiv = document.createElement('div');
+        let bookDiv = document.createElement('div');
         bookDom[i] = bookDiv;
-        bookDiv.textContent = '\n' + myLibrary[i].title + '\n' + myLibrary[i].author 
-        + '\n' + myLibrary[i].readYet + '\n' + myLibrary[i].numberOfPages;
         document.body.appendChild(bookDiv);
+
+        // create ID
+        let divId = 'div' + i;
+        // add ID to div element
+        bookDiv.setAttribute('id', divId);
+
+        // create tag
+        let para = document.createElement('p');
+        // create content
+        let info = document.createTextNode('Title: ' + myLibrary[i].title + '\n' + 'Author: ' + myLibrary[i].author + '\n');
+        // add content to tag
+        para.appendChild(info);
+
+        // target div to add content to
+        let newDiv = document.getElementById(divId);
+        newDiv.appendChild(para);
+        
     }
 }
 
