@@ -70,7 +70,7 @@ function refreshBooks() {
 
     // cycle through myLibrary array
     for (i = 0;i <= (numBooks- 1); i++) {
-        let bookDom[i] = document.createElement('div');
+        bookDom[i] = document.createElement('div');
         bookDom[i].textContent = 'test';
         document.body.appendChild(bookDom[i]);
     }
