@@ -43,13 +43,6 @@ function addBookToLibrary() {
 
 function refreshBooks() {
 
-<<<<<<< HEAD
-    // cycle through myLibrary array
-    for (i = 0;i <= (numBooks- 1); i++) {
-        bookDom[i] = document.createElement('div');
-        bookDom[i].textContent = 'test';
-        document.body.appendChild(bookDom[i]);
-=======
     let numBooks = countBooks();
     
     //create divs to display each of the book objects.
@@ -60,7 +53,6 @@ function refreshBooks() {
         bookDiv.textContent = '\n' + myLibrary[i].title + '\n' + myLibrary[i].author 
         + '\n' + myLibrary[i].readYet + '\n' + myLibrary[i].numberOfPages;
         document.body.appendChild(bookDiv);
->>>>>>> 39bef3ee9b8f7ec9f441c4252b52926b81b142a3
     }
 }
 
