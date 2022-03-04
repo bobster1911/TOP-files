@@ -3,6 +3,7 @@
 let myLibrary = [];
 let bookDom = [];
 
+let numBooks = (myLibrary.length - 1);
 
 // --- FUNCTIONS ---
 
@@ -11,11 +12,9 @@ function countBooks() {
     return numBooks;
 }
 
-//iterate through the array and create a div for each one.
-let numBooks = (myLibrary.length - 1);
 
-//FUNCTIONS
 
+//create a prototype for the book objects to list all of the objects properties.
 function Book(title, author, pages, read) {
     this.title = title;
     this.author = author;
@@ -41,9 +40,21 @@ function addBookToLibrary() {
 
 }
 
-function refreshBooks() {
+function refreshBooks() { // NOTES -- need to add something to erase current divs before rewriting them all.
 
     let numBooks = countBooks();
+    
+    //create variable for number of divs 
+    let divSel = document.body.getElementById('div');
+    let numDivsToDelete = divSel.getElementsByTagName('div').length;
+
+    //remove current divs.
+    for (i = 0; i <= (numDivsToDelete - 1); i++) {
+        let divId = 'div' + i;
+        let toDelete = document.body.getElementById(divId);
+        document.body.remove(toDelete);
+    }
+    
     
     //create divs to display each of the book objects.
     for (i = 0;i <= (numBooks- 1); i++) { 
