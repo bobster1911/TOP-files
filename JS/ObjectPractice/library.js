@@ -104,6 +104,9 @@ button1.addEventListener("click", function() {addBookToLibrary();});
 //refresh button to update the library contents
 let button2 = document.createElement('button');
 button2.textContent = 'Update';
+button2.type = 'button';
+button2.setAttribute('disabled');
+
 document.body.appendChild(button2);
 button2.addEventListener("click", function() {refreshBooks();});
 
