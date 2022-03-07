@@ -3,15 +3,20 @@
 let myLibrary = [];
 let bookDom = [];
 
-let numBooks = (myLibrary.length - 1);
+let bookObjects = 0;
+let booksDisplayed = 0;
 
 // --- FUNCTIONS ---
 
-function countBooks() {
-    let numBooks = myLibrary.length;
-    return numBooks;
+function countBookObj() {
+    bookObjects = myLibrary.length;
+    return bookObjects;
 }
 
+function countbooksDisplayed() {
+    booksDisplayed = document.body.getElementsByTagName('div').length;
+    return booksDisplayed;
+}
 
 
 //create a prototype for the book objects to list all of the objects properties.
@@ -37,27 +42,24 @@ function addBookToLibrary() {
     let book1 = new Book(title, author, pages, read);
     //add new object to libraryArray
     myLibrary.push(book1);
-
+    // update book object count.
+    bookObjects = countBookObj();
 }
 
-function refreshBooks() { // NOTES -- need to add something to erase current divs before rewriting them all.
-
-    let numBooks = countBooks();
+function refreshBooks() { // NOTES -- add disabled attribute to button unless 'add book' has been clicked. Reset to disabled after it is clicked.
     
-    //create variable for number of divs 
-    let divSel = document.body.getElementById('div');
-    let numDivsToDelete = divSel.getElementsByTagName('div').length;
+    if (booksDisplayed > 0) {
 
-    //remove current divs.
-    for (i = 0; i <= (numDivsToDelete - 1); i++) {
-        let divId = 'div' + i;
-        let toDelete = document.body.getElementById(divId);
-        document.body.remove(toDelete);
+        for (i = 0; i <= (booksDisplayed); i++) {
+            let divId = ('div' + i);
+            let toDelete = document.getElementById(divId);
+            toDelete.remove();
+        }
     }
-    
-    
+
+
     //create divs to display each of the book objects.
-    for (i = 0;i <= (numBooks- 1); i++) { 
+    for (i = 0;i < (bookObjects); i++) { 
         
         let bookDiv = document.createElement('div');
         bookDom[i] = bookDiv;
@@ -79,6 +81,7 @@ function refreshBooks() { // NOTES -- need to add something to erase current div
         let newDiv = document.getElementById(divId);
         newDiv.appendChild(para);
         
+        booksDisplayed = countbooksDisplayed();
     }
 }
 
