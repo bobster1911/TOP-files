@@ -44,16 +44,18 @@ function addBookToLibrary() {
     myLibrary.push(book1);
     // update book object count.
     bookObjects = countBookObj();
+
+    button2.disabled = false;
 }
 
 function refreshBooks() { // NOTES -- add disabled attribute to button unless 'add book' has been clicked. Reset to disabled after it is clicked.
     
     if (booksDisplayed > 0) {
 
-        for (i = 0; i <= (booksDisplayed); i++) {
+        for (i = 0; i <= (booksDisplayed - 1); i++) {
             let divId = ('div' + i);
-            let toDelete = document.getElementById(divId);
-            toDelete.remove();
+            console.log(divId);
+            document.getElementById(divId).remove();
         }
     }
 
@@ -83,6 +85,7 @@ function refreshBooks() { // NOTES -- add disabled attribute to button unless 'a
         
         booksDisplayed = countbooksDisplayed();
     }
+    button2.disabled = true;
 }
 
 // --- SITE FLUFF ---
@@ -104,10 +107,11 @@ button1.addEventListener("click", function() {addBookToLibrary();});
 //refresh button to update the library contents
 let button2 = document.createElement('button');
 button2.textContent = 'Update';
-button2.type = 'button';
-button2.setAttribute('disabled');
-
 document.body.appendChild(button2);
+
+button2.setAttribute('id', 'button2');
+button2.disabled = true; // could hide the button completely instead of disabling.
+
 button2.addEventListener("click", function() {refreshBooks();});
 
 
