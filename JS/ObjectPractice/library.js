@@ -54,7 +54,6 @@ function refreshBooks() { // NOTES -- add disabled attribute to button unless 'a
 
         for (i = 0; i <= (booksDisplayed - 1); i++) {
             let divId = ('div' + i);
-            console.log(divId);
             document.getElementById(divId).remove();
         }
     }
@@ -79,12 +78,32 @@ function refreshBooks() { // NOTES -- add disabled attribute to button unless 'a
         // add content to tag
         para.appendChild(info);
 
-        // target div to add content to
+        // target div to add tag (with content) to
         let newDiv = document.getElementById(divId);
         newDiv.appendChild(para);
-        
+
+        // --- if loop -- set read button if unread, otherwise no need for generating the button.
+
+        if (myLibrary[i].readYet == 'unread') {
+            
+            // name button
+            let buttonId = 'readButton' + i;
+            // create read toggle button
+            let readButton = document.createElement('button');
+            readButton.textContent = 'Mark as read';
+
+            newDiv.appendChild(readButton);
+            readButton.setAttribute('id', buttonId);
+            readButton.setAttribute('class', 'unread');
+            readButton.addEventListener('click', function() {console.log(readButton)}); // readButton
+
+        } else {
+            myLibrary[i].readYet = 'read';
+        }
+
         booksDisplayed = countbooksDisplayed();
     }
+
     button2.disabled = true;
 }
 
