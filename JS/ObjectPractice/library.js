@@ -102,13 +102,23 @@ function addReadToggle(buttonId, newDiv) {
         readButton.setAttribute('id', buttonId);
         readButton.addEventListener('click', function() {
             //add premade function here
+        console.log('click on read');
         let string = this.id;
-        statusRead(string);
+        indexNum = string.slice(10);
+        let status = myLibrary[indexNum].readYet;
+        if (status == 'read') {
+            statusUnread(string);
+        } else if (status == 'unread') {
+            statusRead(string);
+        } else {
+            console.log('An error has occurred.')
+        }
 
         });
 
         let ele = document.getElementById(buttonId);
-        ele.classList.add('btn-unread');
+        ele.classList.add('btn-read');
+
 
     } else if (myLibrary[i].readYet == 'unread') {
         let readButton = document.createElement('button');
@@ -117,28 +127,50 @@ function addReadToggle(buttonId, newDiv) {
         readButton.setAttribute('id', buttonId);
         readButton.addEventListener('click', function() {
             //add premade function here
+        console.log('click on unread');
         let string = this.id;
-        statusUnread(string);
-
+        indexNum = string.slice(10);
+        let status = myLibrary[indexNum].readYet;
+        if (status == 'read') {
+            statusUnread(string);
+        } else if (status == 'unread') {
+            statusRead(string);
+        } else {
+            console.log('An error has occurred.')
+        }
+        
+    
         });
 
         let ele = document.getElementById(buttonId);
-        ele.classList.add('btn-read');
-        
+        ele.classList.add('btn-unread');
+
     } else {
         console.log('An error has occurred, time to debug');
     }
 }
 
 function statusRead(string) {
-    let indexNum = string.slice(10);
+    indexNum = (string.slice(10));
     myLibrary[indexNum].readYet = 'read';
+    let ele = document.getElementById(string);
+    ele.textContent = 'Mark as unread';
+    ele.classList.remove('btn-unread');
+    ele.classList.add('btn-read');
 }
 
 function statusUnread(string) {
-    let indexNum = string.slice(10);
+    indexNum = string.slice(10);
     myLibrary[indexNum].readYet = 'unread';
+    let ele = document.getElementById(string);
+    ele.textContent = 'Mark as read';
+    ele.classList.remove('btn-read');
+    ele.classList.add('btn-unread');
 }
+
+// function to change button depending on 
+
+
 
 // --- SITE FLUFF ---
 
