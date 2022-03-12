@@ -58,53 +58,86 @@ function refreshBooks() { // NOTES -- add disabled attribute to button unless 'a
         }
     }
 
-
     //create divs to display each of the book objects.
     for (i = 0;i < (bookObjects); i++) { 
         
         let bookDiv = document.createElement('div');
         bookDom[i] = bookDiv;
         document.body.appendChild(bookDiv);
-
         // create ID
         let divId = 'div' + i;
         // add ID to div element
         bookDiv.setAttribute('id', divId);
-
         // create tag
         let para = document.createElement('p');
+        let para2 = document.createElement('p');
         // create content
-        let info = document.createTextNode('Title: ' + myLibrary[i].title + '\n' + 'Author: ' + myLibrary[i].author + '\n');
+        let titlePara = document.createTextNode('Title: ' + myLibrary[i].title);
+        let authorPara = document.createTextNode('Author: ' + myLibrary[i].author);
         // add content to tag
-        para.appendChild(info);
-
+        para.appendChild(titlePara);
+        para2.appendChild(authorPara);
         // target div to add tag (with content) to
         let newDiv = document.getElementById(divId);
         newDiv.appendChild(para);
+        newDiv.appendChild(para2);
 
-        // --- if loop -- set read button if unread, otherwise no need for generating the button.
-
-        if (myLibrary[i].readYet == 'unread') {
-            
-            // name button
-            let buttonId = 'readButton' + i;
-            // create read toggle button
-            let readButton = document.createElement('button');
-            readButton.textContent = 'Mark as read';
-
-            newDiv.appendChild(readButton);
-            readButton.setAttribute('id', buttonId);
-            readButton.setAttribute('class', 'unread');
-            readButton.addEventListener('click', function() {console.log(readButton)}); // readButton
-
-        } else {
-            myLibrary[i].readYet = 'read';
-        }
+        // --- READ/UNREAD BUTTONS ---
+        let buttonId = 'readButton' + i;
+        addReadToggle(buttonId, newDiv);
 
         booksDisplayed = countbooksDisplayed();
     }
 
     button2.disabled = true;
+}
+
+// creates and adds appropriate button based on read status
+function addReadToggle(buttonId, newDiv) {
+
+    if (myLibrary[i].readYet == 'read') {
+        let readButton = document.createElement('button');
+        readButton.textContent = 'Mark as unread';
+        newDiv.appendChild(readButton);
+        readButton.setAttribute('id', buttonId);
+        readButton.addEventListener('click', function() {
+            //add premade function here
+        let string = this.id;
+        statusRead(string);
+
+        });
+
+        let ele = document.getElementById(buttonId);
+        ele.classList.add('btn-unread');
+
+    } else if (myLibrary[i].readYet == 'unread') {
+        let readButton = document.createElement('button');
+        readButton.textContent = 'Mark as read';
+        newDiv.appendChild(readButton);
+        readButton.setAttribute('id', buttonId);
+        readButton.addEventListener('click', function() {
+            //add premade function here
+        let string = this.id;
+        statusUnread(string);
+
+        });
+
+        let ele = document.getElementById(buttonId);
+        ele.classList.add('btn-read');
+        
+    } else {
+        console.log('An error has occurred, time to debug');
+    }
+}
+
+function statusRead(string) {
+    let indexNum = string.slice(10);
+    myLibrary[indexNum].readYet = 'read';
+}
+
+function statusUnread(string) {
+    let indexNum = string.slice(10);
+    myLibrary[indexNum].readYet = 'unread';
 }
 
 // --- SITE FLUFF ---
