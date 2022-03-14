@@ -9,6 +9,41 @@
 
 <body>
 
+    <div id="overlay">
+        <div id="addBookForm">
+            <form action="" class="">
+                <h2>Add a Book</h2>
+                <label for="title">Title</label>
+                <br>
+                <input type="text" placeholder="Title of book" name="title" required>
+                <br>
+                <br>
+                <label for="author">Author</label>
+                <br>
+                <input type="text" placeholder="Author" name="author" required>
+                <br>
+                <br>
+                <label for="numberOfPages">Pages</label>
+                <br>
+                <input type="text" placeholder="Num. of Pages" name="numberOfPages" required>
+                <br>
+                <br>
+                <label for="status">Unread</label>
+                <input type="radio" name="status" value="unnread" checked>
+                <label for="status">Read</label>
+                <input type="radio" name="status" value="read">
+                <br>
+                <br>
+                <button type="submit" class="">Add</button>
+                <button type="button" class="" onclick="off()">Cancel</button>
+
+            </form>
+        </div>
+    </div>
+    <h1>Library App</h1>
+    <p>Click the button below to add a book to the library.</p>
+    <button onclick="on()">New Book</button>
+    <button id="button2"  onclick="refreshBooks()" disabled>Update</button>
 
 <script src="library.js"></script>
 </body>

@@ -101,8 +101,7 @@ function addReadToggle(buttonId, newDiv) {
         newDiv.appendChild(readButton);
         readButton.setAttribute('id', buttonId);
         readButton.addEventListener('click', function() {
-            //add premade function here
-        console.log('click on read');
+
         let string = this.id;
         indexNum = string.slice(10);
         let status = myLibrary[indexNum].readYet;
@@ -126,8 +125,7 @@ function addReadToggle(buttonId, newDiv) {
         newDiv.appendChild(readButton);
         readButton.setAttribute('id', buttonId);
         readButton.addEventListener('click', function() {
-            //add premade function here
-        console.log('click on unread');
+
         let string = this.id;
         indexNum = string.slice(10);
         let status = myLibrary[indexNum].readYet;
@@ -168,35 +166,24 @@ function statusUnread(string) {
     ele.classList.add('btn-unread');
 }
 
-// function to change button depending on 
+//overlay functions
 
+function on() {
+    document.getElementById('overlay').style.display = 'grid';
+    document.getElementById('overlay').style.placeItems = 'center';
+    document.getElementById('addBookForm').style.display = 'flex';
+
+}
+
+function off() {
+    document.getElementById('overlay').style.display = 'none';
+    document.getElementById('addBookForm').style.display = 'none';
+}
 
 
 // --- SITE FLUFF ---
 
-let title1 = document.createElement('H1');
-title1.textContent = 'Library App';
-document.body.appendChild(title1);
 
-let para1 = document.createElement('p');
-para1.textContent = 'Click the button below to add a book to the library.';
-document.body.appendChild(para1);
-
-//create a button that once pressed, calls on the add-book function.
-let button1 = document.createElement('button');
-button1.textContent = 'Add a book';
-document.body.appendChild(button1);
-button1.addEventListener("click", function() {addBookToLibrary();});
-
-//refresh button to update the library contents
-let button2 = document.createElement('button');
-button2.textContent = 'Update';
-document.body.appendChild(button2);
-
-button2.setAttribute('id', 'button2');
-button2.disabled = true; // could hide the button completely instead of disabling.
-
-button2.addEventListener("click", function() {refreshBooks();});
 
 
 
