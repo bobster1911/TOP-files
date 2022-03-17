@@ -6,6 +6,9 @@ let bookDom = [];
 let bookObjects = 0;
 let booksDisplayed = 0;
 
+document.getElementById('btnAddBook').addEventListener('click', function() {addBookToLibrary()});
+document.getElementById('btnUpdateBooks').addEventListener('click', function() {refreshBooks()});
+
 // --- FUNCTIONS ---
 
 function countBookObj() {
@@ -33,10 +36,10 @@ function addBookToLibrary() {
     //NOTE: change the prompt to a generated form field that looks nice.
 
     //ask for book information
-    let title = prompt('Title of book: ');
-    let author = prompt('Author: ');
-    let pages = prompt('Number of pages: ');
-    let read = prompt('Read or Unread: ');
+    let title = document.getElementsByName("title").value;
+    let author = document.getElementsByName("author").value;
+    let pages = document.getElementsByName("numberOfPages").value;
+    let read = document.getElementsByName("status").value;
        
     //create object with given information
     let book1 = new Book(title, author, pages, read);
@@ -45,7 +48,7 @@ function addBookToLibrary() {
     // update book object count.
     bookObjects = countBookObj();
 
-    button2.disabled = false;
+    btnUpdateBooks.disabled = false;
 }
 
 function refreshBooks() { // NOTES -- add disabled attribute to button unless 'add book' has been clicked. Reset to disabled after it is clicked.
@@ -89,7 +92,7 @@ function refreshBooks() { // NOTES -- add disabled attribute to button unless 'a
         booksDisplayed = countbooksDisplayed();
     }
 
-    button2.disabled = true;
+    btnUpdateBooks.disabled = true;
 }
 
 // creates and adds appropriate button based on read status
