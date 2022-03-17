@@ -36,10 +36,10 @@ function addBookToLibrary() {
     //NOTE: change the prompt to a generated form field that looks nice.
 
     //ask for book information
-    let title = document.getElementsByName("title").value;
-    let author = document.getElementsByName("author").value;
-    let pages = document.getElementsByName("numberOfPages").value;
-    let read = document.getElementsByName("status").value;
+    let title = document.getElementsByName("title")[0].value;
+    let author = document.getElementsByName("author")[0].value;
+    let pages = document.getElementsByName("numberOfPages")[0].value;
+    let read = document.getElementsByName("status")[0].value;
        
     //create object with given information
     let book1 = new Book(title, author, pages, read);
