@@ -39,7 +39,18 @@ function addBookToLibrary() {
     let title = document.getElementsByName("title")[0].value;
     let author = document.getElementsByName("author")[0].value;
     let pages = document.getElementsByName("numberOfPages")[0].value;
-    let read = document.getElementsByName("status")[0].value;
+
+
+    //find checked radio value
+    let radios = document.getElementsByName('status');
+    let radioLength = radios.length;
+
+    for (let i = 0; i < radioLength; i++) {
+        if (radios[i].checked) {
+            read = radios[i].value;
+            break;
+        }
+    }
        
     //create object with given information
     let book1 = new Book(title, author, pages, read);
@@ -47,7 +58,7 @@ function addBookToLibrary() {
     myLibrary.push(book1);
     // update book object count.
     bookObjects = countBookObj();
-
+    
     btnUpdateBooks.disabled = false;
 }
 
