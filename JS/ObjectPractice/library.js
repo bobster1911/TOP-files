@@ -16,7 +16,9 @@ function countBookObj() {
     return bookObjects;
 }
 
-function countbooksDisplayed() {
+function countbooksDisplayed() { // create a regular expression for selecting the book divs <--- INCOMPLETE
+    consoleBooks = document.body.getElementsByTagName('div');
+    console.log(consoleBooks);
     booksDisplayed = document.body.getElementsByTagName('div').length;
     return booksDisplayed;
 }
@@ -58,7 +60,7 @@ function addBookToLibrary() {
     myLibrary.push(book1);
     // update book object count.
     bookObjects = countBookObj();
-    
+
     btnUpdateBooks.disabled = false;
 }
 
@@ -82,6 +84,7 @@ function refreshBooks() { // NOTES -- add disabled attribute to button unless 'a
         let divId = 'div' + i;
         // add ID to div element
         bookDiv.setAttribute('id', divId);
+        bookDiv.setAttribute('class', 'bookDiv');
         // create tag
         let para = document.createElement('p');
         let para2 = document.createElement('p');

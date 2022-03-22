@@ -32,3 +32,15 @@
 .btn-unread {
     color: green;
 }
+
+/* div styles */
+
+.bookDiv {
+    border-color: lime;
+    border-style: solid;
+    padding: 4px;
+    margin: 3px;
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+}
