@@ -1,5 +1,6 @@
 // --- GLOBAL ---
 
+// General
 let myLibrary = [];
 let bookDom = [];
 
@@ -9,6 +10,9 @@ let booksDisplayed = 0;
 document.getElementById('btnAddBook').addEventListener('click', function() {addBookToLibrary()});
 document.getElementById('btnUpdateBooks').addEventListener('click', function() {refreshBooks()});
 
+// Regular Expressions
+const divRegex = /div\d$/;
+
 // --- FUNCTIONS ---
 
 function countBookObj() {
@@ -17,9 +21,21 @@ function countBookObj() {
 }
 
 function countbooksDisplayed() { // create a regular expression for selecting the book divs <--- INCOMPLETE
+    
+    let bookArray = [];
+    let counter = 0;
     consoleBooks = document.body.getElementsByTagName('div');
-    console.log(consoleBooks);
-    booksDisplayed = document.body.getElementsByTagName('div').length;
+    // Loop through returned array and see if any match the regex
+    for (i = 0; i < consoleBooks.length; i++) {
+        bookArray.push(consoleBooks[i].id);
+    }
+    for (j = 0; j < bookArray.length; j++) {
+        if (bookArray[j].match(divRegex)) {
+            counter++;
+        }
+    }
+    
+    booksDisplayed = counter;
     return booksDisplayed;
 }
 
@@ -103,9 +119,10 @@ function refreshBooks() { // NOTES -- add disabled attribute to button unless 'a
         let buttonId = 'readButton' + i;
         addReadToggle(buttonId, newDiv);
 
-        booksDisplayed = countbooksDisplayed();
+        
     }
 
+    booksDisplayed = countbooksDisplayed();
     btnUpdateBooks.disabled = true;
 }
 
