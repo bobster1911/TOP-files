@@ -20,7 +20,7 @@ function countBookObj() {
     return bookObjects;
 }
 
-function countbooksDisplayed() { // create a regular expression for selecting the book divs <--- INCOMPLETE
+function countbooksDisplayed() { // create a regular expression for selecting the book divs
     
     let bookArray = [];
     let counter = 0;
@@ -34,7 +34,7 @@ function countbooksDisplayed() { // create a regular expression for selecting th
             counter++;
         }
     }
-    
+
     booksDisplayed = counter;
     return booksDisplayed;
 }
