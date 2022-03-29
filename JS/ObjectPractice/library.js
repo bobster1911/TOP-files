@@ -104,9 +104,11 @@ function refreshBooks() { // NOTES -- add disabled attribute to button unless 'a
         // create tag
         let para = document.createElement('p');
         let para2 = document.createElement('p');
+        
         // create content
         let titlePara = document.createTextNode('Title: ' + myLibrary[i].title);
         let authorPara = document.createTextNode('Author: ' + myLibrary[i].author);
+        
         // add content to tag
         para.appendChild(titlePara);
         para2.appendChild(authorPara);
@@ -114,7 +116,10 @@ function refreshBooks() { // NOTES -- add disabled attribute to button unless 'a
         let newDiv = document.getElementById(divId);
         newDiv.appendChild(para);
         newDiv.appendChild(para2);
-
+        
+        let btn1 = document.createElement('button');
+        btn1.textContent = 'remove';
+        newDiv.appendChild(btn1); // <--- START HERE - trying to generate button for removing books from live library.
         // --- READ/UNREAD BUTTONS ---
         let buttonId = 'readButton' + i;
         addReadToggle(buttonId, newDiv);
