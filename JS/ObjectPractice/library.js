@@ -118,8 +118,19 @@ function refreshBooks() { // NOTES -- add disabled attribute to button unless 'a
         newDiv.appendChild(para2);
         
         let btn1 = document.createElement('button');
-        btn1.textContent = 'remove';
-        newDiv.appendChild(btn1); // <--- START HERE - trying to generate button for removing books from live library.
+        btn1.textContent = 'Remove';
+        btn1.addEventListener('click', function(divId) {
+            // function here.
+
+            //add if else to account for when there are no books to remove. <-- IMPORTANT
+            let toSlice = divId.path[1].id;
+            let index = toSlice.slice(3);
+            myLibrary.splice(index, 1);
+            // need to figure out how to change books displayed variable before refreshing display. DEBUG
+            btnUpdateBooks.disabled = false; //global variables not updating ...
+        });
+        newDiv.appendChild(btn1); 
+
         // --- READ/UNREAD BUTTONS ---
         let buttonId = 'readButton' + i;
         addReadToggle(buttonId, newDiv);
