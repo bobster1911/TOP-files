@@ -22,10 +22,6 @@ Flow of program
 	- Player factory function called to create the appropriate number of players and in turn name them.
 3. select symbol
 4. board is generated and game starts
-	- create a div for each cell within a containing div for the board itself.
-	- associate each cell div with the array items in gameBoard object.
-	- randomly select which player goes first and then alternate from then on.
-	- 
 5. players alternate moves until 3 in a row or all the spaces are filled
 6. message declares winner or that the game was a draw
 7. option to play another game whilst retaining the scores
