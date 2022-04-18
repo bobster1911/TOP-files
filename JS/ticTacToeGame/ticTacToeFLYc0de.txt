@@ -1,0 +1,67 @@
+Plans for ticTacToe
+===================
+
+DRAFT THOUGHTS
+==============
+
+How will the array render live for the game to be played?
+	- Creating a new object each time doesn't make sense, it would make the most sense to change the properties of the object
+		and then have the program re-render based on the same object it used originally:
+
+	1. cell is clicked
+	2. array is updated
+	3. function that generates the board is called and reading the new object, generates the latest version of the game board
+	4. 
+
+Flow of program
+===============
+
+1. press start
+	- 
+2. select number of players
+3. select symbol
+4. board is generated and game starts
+5. players alternate moves until 3 in a row or all the spaces are filled
+6. message declares winner or that the game was a draw
+7. option to play another game whilst retaining the scores
+	- after 3 games in a row the best of 3 is announced and program takes users back to the main menu.
+
+OBJECTS
+=======
+
+- gameBoard
+	- will have a function for each of the two kinds of games; 1 or 2 player.
+	- 
+- displayController
+	- will render the display graphics using the gameBoard object's information as blueprint.
+- players - factory function to generate 1-2 players (maybe the AI also, will need to think more about that after I get the 
+	two player version of the game working.
+
+
+
+
+Functions:
+
+	- button/cell becomes unclickable after changed to O or X
+
+		> if 0 => (playerClicking (this.player)?) {
+			if (playerClicking.symbol == 'O') {
+				// corresponding array item == symbol
+				// change class to unclickable button.
+
+			}; else if (playerClicking.symbol == 'X') {
+				// corresponding array item == symbol
+				// change class to unclickable button.
+
+			}; else {
+
+				// find what a good worse case scenario is for when main parameters are not met
+				// are not met and the program throws an unexpected error.
+			};
+
+		  else {
+			// do nothing
+			// generate message or sound along lines of "this spot has already been selected"
+		};
+			
+
