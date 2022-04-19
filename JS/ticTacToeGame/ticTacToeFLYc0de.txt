@@ -21,6 +21,10 @@ How will the array render live for the game to be played?
 	3. function that generates the board is called and reading the new object, generates the latest version of the game board
 	
 
+Should I generate the board fully from js or should I have some of the DOM elements hard coded in html to reduce loading times?
+	- I'm deciding to keep it all in js which may not be the most efficient way to do things, but it would be interesting to see how much of a difference is made
+		in a small program like this trying both methods.
+
 Flow of program
 ===============
 
