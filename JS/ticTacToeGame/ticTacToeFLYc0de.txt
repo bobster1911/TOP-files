@@ -1,6 +1,14 @@
 Plans for ticTacToe
 ===================
 
+Current Focus: 
+==============
+- Generating board from array []
+- creating players []
+- changing state of board []
+- buttons for setting up game variables/parameters []
+- rendering visuals from the gameBoard object => displayController object []
+
 DRAFT THOUGHTS
 ==============
 
