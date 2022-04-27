@@ -31,10 +31,12 @@ const gameBoard = (() => {
 
 }) ();
 
-// renders the gameboard output into GUI representation of the board
+// module for GUI and game board display
 const displayBoard = (() => {
+
     const create = () => {
-        // CREATE CONTAINER AND INITIAL START BUTTON
+
+        // Create container and start button
         const container = document.createElement('div');
         container.setAttribute('id', 'btnContainer');
         document.body.appendChild(container);
@@ -43,16 +45,35 @@ const displayBoard = (() => {
         button.setAttribute('id', 'playBtn');
         button.innerHTML = 'Start';
         button.addEventListener('click', function () {
-            // function to remove some items and add new ones for player selection.
-                // 1 player vs. COM, 2 player
+            
+            // add 1 player button
             const button1 = document.createElement('button');
-            button1.setAttribute('id', '1 Player');
-            button1.innerHTML = 'Player 1';
-
+            button1.setAttribute('id', 'onePlayer');
+            button1.innerHTML = '1 Player';
+            button1.addEventListener('click', function () {
+                console.log('Play against the AI');
+            })
+           
+            // add 2 player button
             const button2 = document.createElement('button');
-            button2.setAttribute('id', 'Player 2');
-            // carry on here ... <<<
+            button2.setAttribute('id', 'twoPlayer');
+            button2.innerHTML = '2 Player';
+            button2.addEventListener('click', function () {
+                // enter name player 1
+                // select symbol
+                // enter name player 2
+                // select symbol
+                console.log('set up players for two player game');
+            })
+
+            // append function to start 2 player game
+            // create both players and then take user input for names and select symbols.
+
+            document.body.appendChild(button1);
+            document.body.appendChild(button2);
+            container.remove(button);
         });
+
         container.appendChild(button);
     }
     return { 
