@@ -13,16 +13,17 @@ const gameBoard = (() => {
 
         const _genBoard = (n) => {
             // base case
-            if (n == 0 || n < 0 || n > 8) {
+            if (n < 0 || n > 8) {
                 return console.log('finished recursion for generating board divs.');
             }
             //recursion in replace of a for loop
             const element = document.createElement('div');
-            element.addAttribute('id', `div${n}`);
+            element.setAttribute('id', `div${n}`);
             // don't need to add to array, the numbers are arbitrarily mapped. Or I should say, the buttons will be hardcoded.
             boardContainer.appendChild(element);
-            return _genBoard(n - 1);
+            return _genBoard(n+1);
         };
+        _genBoard(n);
     };
 
     return {
@@ -52,6 +53,7 @@ const displayBoard = (() => {
             button1.innerHTML = '1 Player';
             button1.addEventListener('click', function () {
                 console.log('Play against the AI');
+                console.log(this);
             })
            
             // add 2 player button
@@ -83,16 +85,40 @@ const displayBoard = (() => {
 
 // factory function for creating players
 const Player = (name, symbol, score) => {
-	const rng = () => {};
 	return {
 		name,
 		symbol,
-		score,
-		rng
+		score
 	};
 };
 
 // players could have properties for wins, losses and draws.
 	// this could then reset when 'play again' or such is clicked.
+
+// Create a module that creates elements, so that I can call on the module functions
+// instead of having to create functions each time. 
+// will have to think of a way for the function to dynamically create the element id each time.
+    // * count the amount of that same time of element in current element scope and then 
+    // create the id name accordingly.
+
+const makeEle = ( () => {
+    // test p maker to see whether my theory works.
+    // * what parameters does the function need?
+    const pCreate = (loc, type) => {
+        // location - where elements are to be added
+        // n - how many elements
+        // type - type of element
+        const element = loc.createElement(`${type}`);
+        const n = document.getElementsByTagName(type).length;
+        console.log(n);
+
+        element.setAttribute('id', (type + `${n + 1}`))
+        console.log(this);
+
+    }
+    return { 
+        pCreate 
+    }
+}) ();
 
 displayBoard.create();
