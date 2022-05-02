@@ -53,7 +53,9 @@ const displayBoard = (() => {
             button1.innerHTML = '1 Player';
             button1.addEventListener('click', function () {
                 console.log('Play against the AI');
-                console.log(this);
+                const testNode = document.createNodeIterator(document.body, NodeFilter.SHOW_DOCUMENT);
+                console.log(testNode).nextNode();
+
             })
            
             // add 2 player button
@@ -98,7 +100,7 @@ const Player = (name, symbol, score) => {
 // Create a module that creates elements, so that I can call on the module functions
 // instead of having to create functions each time. 
 // will have to think of a way for the function to dynamically create the element id each time.
-    // * count the amount of that same time of element in current element scope and then 
+    // * count the amount of that same type of element in current element scope and then 
     // create the id name accordingly.
 
 const makeEle = ( () => {
@@ -122,3 +124,4 @@ const makeEle = ( () => {
 }) ();
 
 displayBoard.create();
+
