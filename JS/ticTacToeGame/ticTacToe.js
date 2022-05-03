@@ -53,8 +53,10 @@ const displayBoard = (() => {
             button1.innerHTML = '1 Player';
             button1.addEventListener('click', function () {
                 console.log('Play against the AI');
-                const testNode = document.createNodeIterator(document.body, NodeFilter.SHOW_DOCUMENT);
-                console.log(testNode).nextNode();
+                const testNode = document.createNodeIterator(document.body, NodeFilter.SHOW_ELEMENT);
+                // console.log(testNode);
+                console.log(testNode.nextNode());
+                // create array of the document node branch from the root until there are no more to add to the array. 
 
             })
            
@@ -103,20 +105,23 @@ const Player = (name, symbol, score) => {
     // * count the amount of that same type of element in current element scope and then 
     // create the id name accordingly.
 
-const makeEle = ( () => {
+const makeEle = (() => {
     // test p maker to see whether my theory works.
     // * what parameters does the function need?
-    const pCreate = (loc, type) => {
-        // location - where elements are to be added
-        // n - how many elements
+    const pCreate = (loc, type, idName) => {
+
+        // location - where elements are to be added e.g. document.body.div
         // type - type of element
+
+        // CREATE element for now without dynamically naming it, have name as one of the function parameters.
+        // ---
+        // n - how many elements [o]
+        // dynamic naming of element [o]
         const element = loc.createElement(`${type}`);
-        const n = document.getElementsByTagName(type).length;
-        console.log(n);
-
-        element.setAttribute('id', (type + `${n + 1}`))
-        console.log(this);
-
+        element.setAttribute('id', `${idName}`);
+        return element;
+        // append the element
+        // document is all that's needed for creating elements, that's why it wouldn't take the body parameter.
     }
     return { 
         pCreate 
