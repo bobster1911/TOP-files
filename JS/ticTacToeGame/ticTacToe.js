@@ -53,10 +53,6 @@ const displayBoard = (() => {
             button1.innerHTML = '1 Player';
             button1.addEventListener('click', function () {
                 console.log('Play against the AI');
-                const testNode = document.createNodeIterator(document.body, NodeFilter.SHOW_ELEMENT);
-                // console.log(testNode);
-                console.log(testNode.nextNode());
-                // create array of the document node branch from the root until there are no more to add to the array. 
 
             })
            
@@ -66,6 +62,12 @@ const displayBoard = (() => {
             button2.innerHTML = '2 Player';
             button2.addEventListener('click', function () {
                 // enter name player 1
+                magicModule.create(document.body, 'div', 'en-div'); 
+                const enNd = document.getElementById('en-div');
+                magicModule.create(enNd, 'button', 'en-btn');
+                const enBtn = document.getElementById('en-btn');
+                enBtn.innerHTML = 'next';
+                
                 // select symbol
                 // enter name player 2
                 // select symbol
@@ -105,10 +107,10 @@ const Player = (name, symbol, score) => {
     // * count the amount of that same type of element in current element scope and then 
     // create the id name accordingly.
 
-const makeEle = (() => {
+const magicModule = (() => {
     // test p maker to see whether my theory works.
     // * what parameters does the function need?
-    const pCreate = (loc, type, idName) => {
+    const create = (loc, type, idName) => {
 
         // location - where elements are to be added e.g. document.body.div
         // type - type of element
@@ -117,16 +119,37 @@ const makeEle = (() => {
         // ---
         // n - how many elements [o]
         // dynamic naming of element [o]
-        const element = loc.createElement(`${type}`);
+        const element = document.createElement(`${type}`);
         element.setAttribute('id', `${idName}`);
-        return element;
+        loc.appendChild(element);
         // append the element
+        // NOTES:
         // document is all that's needed for creating elements, that's why it wouldn't take the body parameter.
     }
+
+    const makeForm = (loc, label, name, id, opt1, op2, op3) => {
+        magicModule.create(loc, 'form', id);
+        const tForm = document.getElementById(id);
+        magicModule.create(tForm, 'label', 'label1');
+        magicModule.create(tForm, 'select', 'symbols');
+        const tSelect = document.getElementById('symbols');
+        magicModule.create(tSelect, 'option', 'opt1');
+        const tOpt1 = document.getElementById('opt1');
+        magicModule.create(tSelect, 'option', 'opt2');
+        const tOpt2 = document.getElementById('opt2');
+        magicModule.create(tSelect, 'option', 'opt3');
+        const tOpt3 = document.getElementById('opt3');
+        // more efficient way to do this... ( get it to work first.)
+    }
+
     return { 
-        pCreate 
+        create
     }
 }) ();
+
+// FUNCTIONS to make for personal library:
+// create a basic form with js [ ]
+// * skeleton for recursion loop 
 
 displayBoard.create();
 
