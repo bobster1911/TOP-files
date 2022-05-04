@@ -127,7 +127,7 @@ const magicModule = (() => {
         // document is all that's needed for creating elements, that's why it wouldn't take the body parameter.
     }
 
-    const makeForm = (loc, label, name, id, opt1, op2, op3) => {
+    const makeForm = (loc, label, name, id, opt1, opt2, opt3) => {
         magicModule.create(loc, 'form', id);
         const tForm = document.getElementById(id);
         magicModule.create(tForm, 'label', 'label1');
