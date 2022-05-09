@@ -67,7 +67,6 @@ const displayBoard = (() => {
                 magicModule.create(enNd, 'button', 'en-btn');
                 const enBtn = document.getElementById('en-btn');
                 enBtn.innerHTML = 'next';
-                
                 // select symbol
                 // enter name player 2
                 // select symbol
@@ -127,12 +126,16 @@ const magicModule = (() => {
         // document is all that's needed for creating elements, that's why it wouldn't take the body parameter.
     }
 
-    const makeForm = (loc, label, name, id, opt1, opt2, opt3) => {
+    const makeForm = (loc, name, id, opt1, opt2, opt3) => {
         magicModule.create(loc, 'form', id);
         const tForm = document.getElementById(id);
         magicModule.create(tForm, 'label', 'label1');
         magicModule.create(tForm, 'select', 'symbols');
         const tSelect = document.getElementById('symbols');
+        const tLabel = document.getElementById('label1');
+        tSelect.setAttribute('name', name);
+        tLabel.setAttribute('for', name);
+
         magicModule.create(tSelect, 'option', 'opt1');
         const tOpt1 = document.getElementById('opt1');
         magicModule.create(tSelect, 'option', 'opt2');
@@ -140,6 +143,12 @@ const magicModule = (() => {
         magicModule.create(tSelect, 'option', 'opt3');
         const tOpt3 = document.getElementById('opt3');
         // more efficient way to do this... ( get it to work first.)
+        tOpt1.innerHTML = opt1;
+        tOpt1.setAttribute('value', opt1);
+        tOpt2.innerHTML = opt2;
+        tOpt1.setAttribute('value', opt2);
+        tOpt3.innerHTML = opt3;
+        tOpt1.setAttribute('value', opt3);
     }
 
     return { 
