@@ -68,7 +68,7 @@ const displayBoard = (() => {
                 // field for typing name
                 magicModule.create(enNd, )
                 // drop down for symbol select
-                magicModule.makeForm(enNd, 'symbol', 'symForm', 'naughts', 'crosses');
+                magicModule.makeForm(enNd, 'symbol', 'naughts', 'crosses');
                 // submit button to create player 1 object
                 
             })
@@ -126,18 +126,24 @@ const magicModule = (() => {
         // document is all that's needed for creating elements, that's why it wouldn't take the body parameter.
     }
 
-    const makeForm = (loc, name, id, opt1, opt2) => {
+    const makeForm = (loc, id, opt1, opt2) => {
+        
         magicModule.create(loc, 'form', id);
         const tForm = document.getElementById(id);
+        
         magicModule.create(tForm, 'label', 'fname');
-        magicModule.create(tForm, 'label', 'symbol');
-        magicModule.create(tForm, 'select', 'symbols');
         const tName = document.getElementById('fname');
-        const tSymbols = document.getElementById('symbols');
-        const tLabel = document.getElementById('symbol');
-        tSelect.setAttribute('name', name);
-        tSymbols.setAttribute('for', name);
-        tName.setAttribute('type', 'text');
+        tName.innerHTML = 'Name: ';
+        magicModule.create(tForm, 'input', 'nameInput');
+        const nameInput = document.getElementById('nameInput');
+        nameInput.setAttribute('type', 'text');
+        nameInput.setAttribute('name', 'fname');
+        
+        // dropdown symbol select
+        magicModule.create(tForm, 'label', 'symbol');
+        magicModule.create(tForm, 'select', 'symbolSelect');
+        const tSymbols = document.getElementById('symbolSelect');
+        tSymbols.setAttribute('name', 'symbols');
 
         magicModule.create(tSelect, 'option', 'opt1');
         const tOpt1 = document.getElementById('opt1');
@@ -145,7 +151,6 @@ const magicModule = (() => {
         const tOpt2 = document.getElementById('opt2');
         // more efficient way to do this... ( get it to work first.)
         // IMPROVE: use recursion to create x amount of options.
-
         tOpt1.innerHTML = opt1;
         tOpt1.setAttribute('value', opt1);
         tOpt2.innerHTML = opt2;
