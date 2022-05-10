@@ -61,16 +61,16 @@ const displayBoard = (() => {
             button2.setAttribute('id', 'twoPlayer');
             button2.innerHTML = '2 Player';
             button2.addEventListener('click', function () {
-                // enter name player 1
+                
+                // div for player creation
                 magicModule.create(document.body, 'div', 'en-div'); 
                 const enNd = document.getElementById('en-div');
-                magicModule.create(enNd, 'button', 'en-btn');
-                const enBtn = document.getElementById('en-btn');
-                enBtn.innerHTML = 'next';
-                // select symbol
-                // enter name player 2
-                // select symbol
-                console.log('set up players for two player game');
+                // field for typing name
+                magicModule.create(enNd, )
+                // drop down for symbol select
+                magicModule.makeForm(enNd, 'symbol', 'symForm', 'naughts', 'crosses');
+                // submit button to create player 1 object
+                
             })
 
             // append function to start 2 player game
@@ -126,39 +126,42 @@ const magicModule = (() => {
         // document is all that's needed for creating elements, that's why it wouldn't take the body parameter.
     }
 
-    const makeForm = (loc, name, id, opt1, opt2, opt3) => {
+    const makeForm = (loc, name, id, opt1, opt2) => {
         magicModule.create(loc, 'form', id);
         const tForm = document.getElementById(id);
-        magicModule.create(tForm, 'label', 'label1');
+        magicModule.create(tForm, 'label', 'fname');
+        magicModule.create(tForm, 'label', 'symbol');
         magicModule.create(tForm, 'select', 'symbols');
-        const tSelect = document.getElementById('symbols');
-        const tLabel = document.getElementById('label1');
+        const tName = document.getElementById('fname');
+        const tSymbols = document.getElementById('symbols');
+        const tLabel = document.getElementById('symbol');
         tSelect.setAttribute('name', name);
-        tLabel.setAttribute('for', name);
+        tSymbols.setAttribute('for', name);
+        tName.setAttribute('type', 'text');
 
         magicModule.create(tSelect, 'option', 'opt1');
         const tOpt1 = document.getElementById('opt1');
         magicModule.create(tSelect, 'option', 'opt2');
         const tOpt2 = document.getElementById('opt2');
-        magicModule.create(tSelect, 'option', 'opt3');
-        const tOpt3 = document.getElementById('opt3');
         // more efficient way to do this... ( get it to work first.)
+        // IMPROVE: use recursion to create x amount of options.
+
         tOpt1.innerHTML = opt1;
         tOpt1.setAttribute('value', opt1);
         tOpt2.innerHTML = opt2;
-        tOpt1.setAttribute('value', opt2);
-        tOpt3.innerHTML = opt3;
-        tOpt1.setAttribute('value', opt3);
+        tOpt2.setAttribute('value', opt2);
     }
 
     return { 
-        create
+        create,
+        makeForm
     }
 }) ();
+
+
+
+displayBoard.create();
 
 // FUNCTIONS to make for personal library:
 // create a basic form with js [ ]
 // * skeleton for recursion loop 
-
-displayBoard.create();
-
