@@ -38,50 +38,44 @@ const displayBoard = (() => {
     const create = () => {
 
         // Create container and start button
-        const container = document.createElement('div');
-        container.setAttribute('id', 'btnContainer');
-        document.body.appendChild(container);
-
-        const button = document.createElement('button');
-        button.setAttribute('id', 'playBtn');
+        magicModule.create(document.body, 'div', 'btnContainer');
+        const container = document.getElementById('btnContainer');
+        
+        magicModule.create(container, 'button', 'playBtn');
+        const button = document.getElementById('playBtn');
         button.innerHTML = 'Start';
         button.addEventListener('click', function () {
             
             // add 1 player button
-            const button1 = document.createElement('button');
-            button1.setAttribute('id', 'onePlayer');
+            magicModule.create(document.body, 'button', 'onePlayer');
+            const button1 = document.getElementById('onePlayer');
             button1.innerHTML = '1 Player';
             button1.addEventListener('click', function () {
                 console.log('Play against the AI');
 
-            })
+            });
            
             // add 2 player button
-            const button2 = document.createElement('button');
-            button2.setAttribute('id', 'twoPlayer');
+            magicModule.create(document.body, 'button', 'twoPlayer');
+            const button2 = document.getElementById('twoPlayer');
             button2.innerHTML = '2 Player';
             button2.addEventListener('click', function () {
                 
                 // div for player creation
-                magicModule.create(document.body, 'div', 'en-div'); 
-                const enNd = document.getElementById('en-div');
-                // field for typing name
-                magicModule.create(enNd, )
-                // drop down for symbol select
+                magicModule.create(document.body, 'div', 'enDiv'); 
+                const enNd = document.getElementById('enDiv');
+
+                // field for typing name, drop down for symbol select
                 magicModule.makeForm(enNd, 'symbol', 'naughts', 'crosses');
+
+                // remove player buttons
+
                 // submit button to create player 1 object
                 
             })
-
-            // append function to start 2 player game
-            // create both players and then take user input for names and select symbols.
-
-            document.body.appendChild(button1);
-            document.body.appendChild(button2);
-            container.remove(button);
+            
         });
 
-        container.appendChild(button);
     }
     return { 
         create
@@ -90,6 +84,7 @@ const displayBoard = (() => {
 
 // factory function for creating players
 const Player = (name, symbol, score) => {
+    
 	return {
 		name,
 		symbol,
@@ -97,18 +92,10 @@ const Player = (name, symbol, score) => {
 	};
 };
 
-// players could have properties for wins, losses and draws.
-	// this could then reset when 'play again' or such is clicked.
 
-// Create a module that creates elements, so that I can call on the module functions
-// instead of having to create functions each time. 
-// will have to think of a way for the function to dynamically create the element id each time.
-    // * count the amount of that same type of element in current element scope and then 
-    // create the id name accordingly.
-
+// module with functions that create elements to save me time.
 const magicModule = (() => {
-    // test p maker to see whether my theory works.
-    // * what parameters does the function need?
+
     const create = (loc, type, idName) => {
 
         // location - where elements are to be added e.g. document.body.div
@@ -138,9 +125,13 @@ const magicModule = (() => {
         const nameInput = document.getElementById('nameInput');
         nameInput.setAttribute('type', 'text');
         nameInput.setAttribute('name', 'fname');
+
+        magicModule.create(tForm, 'br');
         
         // dropdown symbol select
-        magicModule.create(tForm, 'label'. )
+        magicModule.create(tForm, 'label', 'lSymbol');
+        const lSymbol = document.getElementById('lSymbol');
+        lSymbol.innerHTML = 'Symbol: ';
         magicModule.create(tForm, 'label', 'symbol');
         magicModule.create(tForm, 'select', 'symbolSelect');
         const tSymbols = document.getElementById('symbolSelect');
