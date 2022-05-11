@@ -130,7 +130,7 @@ const magicModule = (() => {
         
         magicModule.create(loc, 'form', id);
         const tForm = document.getElementById(id);
-        
+        // input field and label
         magicModule.create(tForm, 'label', 'fname');
         const tName = document.getElementById('fname');
         tName.innerHTML = 'Name: ';
@@ -140,14 +140,14 @@ const magicModule = (() => {
         nameInput.setAttribute('name', 'fname');
         
         // dropdown symbol select
+        magicModule.create(tForm, 'label'. )
         magicModule.create(tForm, 'label', 'symbol');
         magicModule.create(tForm, 'select', 'symbolSelect');
         const tSymbols = document.getElementById('symbolSelect');
         tSymbols.setAttribute('name', 'symbols');
-
-        magicModule.create(tSelect, 'option', 'opt1');
+        magicModule.create(tSymbols, 'option', 'opt1');
         const tOpt1 = document.getElementById('opt1');
-        magicModule.create(tSelect, 'option', 'opt2');
+        magicModule.create(tSymbols, 'option', 'opt2');
         const tOpt2 = document.getElementById('opt2');
         // more efficient way to do this... ( get it to work first.)
         // IMPROVE: use recursion to create x amount of options.
