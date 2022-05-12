@@ -45,9 +45,11 @@ const displayBoard = (() => {
         const button = document.getElementById('playBtn');
         button.innerHTML = 'Start';
         button.addEventListener('click', function () {
+
+            // NOTE - make sure the buttons are added to the btnContainer
             
             // add 1 player button
-            magicModule.create(document.body, 'button', 'onePlayer');
+            magicModule.create(container, 'button', 'onePlayer');
             const button1 = document.getElementById('onePlayer');
             button1.innerHTML = '1 Player';
             button1.addEventListener('click', function () {
@@ -56,7 +58,7 @@ const displayBoard = (() => {
             });
            
             // add 2 player button
-            magicModule.create(document.body, 'button', 'twoPlayer');
+            magicModule.create(container, 'button', 'twoPlayer');
             const button2 = document.getElementById('twoPlayer');
             button2.innerHTML = '2 Player';
             button2.addEventListener('click', function () {
@@ -69,11 +71,21 @@ const displayBoard = (() => {
                 magicModule.makeForm(enNd, 'symbol', 'naughts', 'crosses');
 
                 // remove player buttons
-
+                button1.remove();
+                button2.remove();
                 // submit button to create player 1 object
+                magicModule.create(enNd, 'button', 'subBtn');
+                const subBtn = document.getElementById('subBtn');
+                subBtn.innerHTML = 'Submit';
+                // make sure configured as a submit button for the form -> look this up
+                subBtn.addEventListener('click', function() {
+                    //function for submit button
+                })
                 
             })
-            
+            // remove 'start' button after the player buttons have been added
+            button.remove();
+
         });
 
     }
