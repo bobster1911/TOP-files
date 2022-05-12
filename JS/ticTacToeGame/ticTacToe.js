@@ -35,7 +35,7 @@ const gameBoard = (() => {
 // module for GUI and game board display
 const displayBoard = (() => {
 
-    const create = () => {
+    const create = () => { // might consider implementing closure for this 'create' method.
 
         // Create container and start button
         magicModule.create(document.body, 'div', 'btnContainer');
@@ -73,15 +73,20 @@ const displayBoard = (() => {
                 // remove player buttons
                 button1.remove();
                 button2.remove();
+                // player 1 text
+                magicModule.create(enNd, 'p', 'p1Header');
+                const p1Header = document.getElementById('p1Header');
+                p1Header.innerHTML = 'Player 1';
                 // submit button to create player 1 object
                 magicModule.create(enNd, 'button', 'subBtn');
                 const subBtn = document.getElementById('subBtn');
                 subBtn.innerHTML = 'Submit';
                 // make sure configured as a submit button for the form -> look this up
                 subBtn.addEventListener('click', function() {
-                    //function for submit button
+                    // function for submit button
+                    const player1 = Player(nameInput.value, symbolSelect, 0);
+                    // create player 2 object
                 })
-                
             })
             // remove 'start' button after the player buttons have been added
             button.remove();
