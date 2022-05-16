@@ -84,9 +84,15 @@ const displayBoard = (() => {
                 // make sure configured as a submit button for the form -> look this up
                 subBtn.addEventListener('click', function() {
                     // function for submit button
-                    const player1 = Player(nameInput.value, symbolSelect, 0);
+                    const player1 = Player(nameInput.value, symbolSelect.value, 0);
                     // create player 2 object
-                })
+                    // * don't need to return the object because it's all a self-contained game.
+                    //   the whole point is that the object cannot be accessed from the console and 
+                    //   only within the script itself.
+                    
+                    
+                });
+
             })
             // remove 'start' button after the player buttons have been added
             button.remove();
