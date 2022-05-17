@@ -74,9 +74,10 @@ const displayBoard = (() => {
                 button1.remove();
                 button2.remove();
                 // player 1 text
-                magicModule.create(enNd, 'p', 'p1Header');
-                const p1Header = document.getElementById('p1Header');
-                p1Header.innerHTML = 'Player 1';
+                // insert p1Header before input field.
+                const formLoc = document.getElementById('symbol');
+                magicModule.ins(this.parentNode, formLoc, 'p', 'p1Header');
+                
                 // submit button to create player 1 object
                 magicModule.create(enNd, 'button', 'subBtn');
                 const subBtn = document.getElementById('subBtn');
@@ -90,6 +91,9 @@ const displayBoard = (() => {
                     //   the whole point is that the object cannot be accessed from the console and 
                     //   only within the script itself.
                     
+
+                    // remove and re-add the subBtn with new function to create the player 2 object.
+
                     
                 });
 
@@ -136,6 +140,23 @@ const magicModule = (() => {
         // document is all that's needed for creating elements, that's why it wouldn't take the body parameter.
     }
 
+    const ins = (par, ref, type, idName) => {
+
+        // location - where elements are to be added e.g. document.body.div
+        // type - type of element
+
+        // CREATE element for now without dynamically naming it, have name as one of the function parameters.
+        // ---
+        // n - how many elements [o]
+        // dynamic naming of element [o]
+        const element = document.createElement(`${type}`);
+        element.setAttribute('id', `${idName}`);
+        par.insertBefore(element, ref);
+        // append the element
+        // NOTES:
+        // document is all that's needed for creating elements, that's why it wouldn't take the body parameter.
+    }
+
     const makeForm = (loc, id, opt1, opt2) => {
         
         magicModule.create(loc, 'form', id);
@@ -173,6 +194,7 @@ const magicModule = (() => {
 
     return { 
         create,
+        ins,
         makeForm
     }
 }) ();
