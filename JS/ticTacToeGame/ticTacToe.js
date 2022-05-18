@@ -73,11 +73,13 @@ const displayBoard = (() => {
                 // remove player buttons
                 button1.remove();
                 button2.remove();
+
                 // player 1 text
-                // insert p1Header before input field.
                 const formLoc = document.getElementById('symbol');
-                magicModule.ins(this.parentNode, formLoc, 'p', 'p1Header');
-                
+                magicModule.ins(enNd, formLoc, 'p', 'p1Header');
+                const p1Header = document.getElementById('p1Header');
+                p1Header.innerHTML = 'Player 1';
+
                 // submit button to create player 1 object
                 magicModule.create(enNd, 'button', 'subBtn');
                 const subBtn = document.getElementById('subBtn');
@@ -86,18 +88,28 @@ const displayBoard = (() => {
                 subBtn.addEventListener('click', function() {
                     // function for submit button
                     const player1 = Player(nameInput.value, symbolSelect.value, 0);
+                    console.log(player1);
                     // create player 2 object
-                    // * don't need to return the object because it's all a self-contained game.
-                    //   the whole point is that the object cannot be accessed from the console and 
-                    //   only within the script itself.
-                    
+                    p1Header.remove();
+                    formLoc.reset();
+                    // grey out option selected (symbolSelect.value)
+                    subBtn.remove();
+                    // recreate button with function for player 2
+                    magicModule.create(enNd, 'button', 'subBtn2');
+                    const subBtn2 = document.getElementById('subBtn2');
+                    subBtn2.innerHTML = 'Submit';
 
-                    // remove and re-add the subBtn with new function to create the player 2 object.
-
-                    
+                    magicModule.ins(enNd, formLoc, 'p', 'p2Header');
+                    const p2Header = document.getElementById('p2Header');
+                    p2Header.innerHTML = 'Player 2';
+                    console.log(player1.symbol);
+                    subBtn2.addEventListener('click', function() {
+                        const player2 = Player(nameInput.value, symbolSelect.value, 0);
+                        console.log(player2);
+                        formLoc.reset();
+                    });
                 });
-
-            })
+            });
             // remove 'start' button after the player buttons have been added
             button.remove();
 
@@ -125,39 +137,19 @@ const magicModule = (() => {
 
     const create = (loc, type, idName) => {
 
-        // location - where elements are to be added e.g. document.body.div
-        // type - type of element
-
-        // CREATE element for now without dynamically naming it, have name as one of the function parameters.
-        // ---
-        // n - how many elements [o]
-        // dynamic naming of element [o]
         const element = document.createElement(`${type}`);
         element.setAttribute('id', `${idName}`);
         loc.appendChild(element);
-        // append the element
-        // NOTES:
-        // document is all that's needed for creating elements, that's why it wouldn't take the body parameter.
     }
 
     const ins = (par, ref, type, idName) => {
 
-        // location - where elements are to be added e.g. document.body.div
-        // type - type of element
-
-        // CREATE element for now without dynamically naming it, have name as one of the function parameters.
-        // ---
-        // n - how many elements [o]
-        // dynamic naming of element [o]
         const element = document.createElement(`${type}`);
         element.setAttribute('id', `${idName}`);
         par.insertBefore(element, ref);
-        // append the element
-        // NOTES:
-        // document is all that's needed for creating elements, that's why it wouldn't take the body parameter.
     }
 
-    const makeForm = (loc, id, opt1, opt2) => {
+    const makeForm = (loc, id, nauOpt, crossOpt) => {
         
         magicModule.create(loc, 'form', id);
         const tForm = document.getElementById(id);
@@ -180,16 +172,16 @@ const magicModule = (() => {
         magicModule.create(tForm, 'select', 'symbolSelect');
         const tSymbols = document.getElementById('symbolSelect');
         tSymbols.setAttribute('name', 'symbols');
-        magicModule.create(tSymbols, 'option', 'opt1');
-        const tOpt1 = document.getElementById('opt1');
-        magicModule.create(tSymbols, 'option', 'opt2');
-        const tOpt2 = document.getElementById('opt2');
+        magicModule.create(tSymbols, 'option', 'nauOpt');
+        const tnauOpt = document.getElementById('nauOpt');
+        magicModule.create(tSymbols, 'option', 'crossOpt');
+        const tcrossOpt = document.getElementById('crossOpt');
         // more efficient way to do this... ( get it to work first.)
         // IMPROVE: use recursion to create x amount of options.
-        tOpt1.innerHTML = opt1;
-        tOpt1.setAttribute('value', opt1);
-        tOpt2.innerHTML = opt2;
-        tOpt2.setAttribute('value', opt2);
+        tnauOpt.innerHTML = nauOpt;
+        tnauOpt.setAttribute('value', nauOpt);
+        tcrossOpt.innerHTML = crossOpt;
+        tcrossOpt.setAttribute('value', crossOpt);
     }
 
     return { 
