@@ -9,6 +9,7 @@ const gameBoard = (() => {
         //recursive function for creating the divs for the ticTacToe board.
         const container = document.createElement('div');
         container.setAttribute('id', 'boardContainer');
+        container.setAttribute('class', 'gridContainer');
         document.body.appendChild(container);
 
         const _genBoard = (n) => {
@@ -19,6 +20,7 @@ const gameBoard = (() => {
             //recursion in replace of a for loop
             const element = document.createElement('div');
             element.setAttribute('id', `div${n}`);
+            element.setAttribute('class', 'gridDiv');
             // don't need to add to array, the numbers are arbitrarily mapped. Or I should say, the buttons will be hardcoded.
             boardContainer.appendChild(element);
             return _genBoard(n+1);
@@ -102,11 +104,21 @@ const displayBoard = (() => {
                     magicModule.ins(enNd, formLoc, 'p', 'p2Header');
                     const p2Header = document.getElementById('p2Header');
                     p2Header.innerHTML = 'Player 2';
-                    console.log(player1.symbol);
+                    if (player1.symbol == 'naughts') {
+                        // disable naughts option
+                        nauOpt.setAttribute('disabled', '');
+                    } else if (player1.symbol == 'crosses') {
+                        // disable crosses option
+                        crossOpt.setAttribute('disabled', '');
+                    }
                     subBtn2.addEventListener('click', function() {
                         const player2 = Player(nameInput.value, symbolSelect.value, 0);
-                        console.log(player2);
-                        formLoc.reset();
+                        //formLoc.reset();
+
+                        //decide who goes first
+                        
+                        //generate the board grid
+                        gameBoard.create();
                     });
                 });
             });
