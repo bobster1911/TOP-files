@@ -1,19 +1,70 @@
 .body {
     display: grid;
+    grid-template-columns: 15% 70% 15%;
+    grid-template-rows: auto;
+    grid-template-areas: 
+        '. header .'
+        '. main .'
+        '. footer .';
 }
 
 .gridDiv {
     display: flex;
-    border-color: lime;
+    height: 14vw;
+    border-color: black;
     border-style: solid;
     
 }
 
+.gridDiv:hover {
+    background-color: lightcyan;
+}
+
 .gridContainer {
     display: grid;
-    
-    width: 50%;
+    grid-area: main;
+    grid-template-areas:
+        'one two three'
+        'four five six'
+        'seven eight nine';
+    width: 50vw;
     border-color: black;
-    border-style: solid;
-    
+    border-style: solid;   
+}
+
+
+#div0 {
+    grid-area: one;
+}
+
+#div1 {
+    grid-area: two;
+}
+
+#div2 {
+    grid-area: three;
+}
+
+#div3 {
+    grid-area: four;
+}
+
+#div4 {
+    grid-area: five;
+}
+
+#div5 {
+    grid-area: six;
+}
+
+#div6 {
+    grid-area: seven;
+}
+
+#div7 {
+    grid-area: eight;
+}
+
+#div8 {
+    grid-area: nine;
 }

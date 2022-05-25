@@ -1,31 +1,66 @@
 // the logic behind the state of the game board.
 const gameBoard = (() => {
 
-    const create = () => {
-        // create blank array
-        const LEN = 9;
-        const n = 0; // may have to be 'let', but not sure..
-        const arr = new Array (LEN).fill(0);
-        //recursive function for creating the divs for the ticTacToe board.
-        const container = document.createElement('div');
-        container.setAttribute('id', 'boardContainer');
-        container.setAttribute('class', 'gridContainer');
-        document.body.appendChild(container);
+    const create = (playerOne, playerTwo, whoStarts = 0) => {
+        if (whoStarts != 0) {
+            const _start = () => { //define function
 
-        const _genBoard = (n) => {
-            // base case
-            if (n < 0 || n > 8) {
-                return console.log('finished recursion for generating board divs.');
-            }
-            //recursion in replace of a for loop
-            const element = document.createElement('div');
-            element.setAttribute('id', `div${n}`);
-            element.setAttribute('class', 'gridDiv');
-            // don't need to add to array, the numbers are arbitrarily mapped. Or I should say, the buttons will be hardcoded.
-            boardContainer.appendChild(element);
-            return _genBoard(n+1);
-        };
-        _genBoard(n);
+                // create blank array
+                const LEN = 9;
+                const n = 0; 
+                const arr = new Array (LEN).fill(0);
+                //recursive function for creating the divs for the ticTacToe board.
+                const container = document.createElement('div');
+                container.setAttribute('id', 'boardContainer');
+                container.setAttribute('class', 'gridContainer');
+                document.body.appendChild(container);
+
+                const _genBoard = (n) => { //define function
+                    // base case
+                    if (n < 0 || n > 8) {
+                        console.log('finished recursion for generating board divs.');
+                        return;
+                    }
+                    //recursion in replace of a for loop
+                    const element = document.createElement('div');
+                    element.setAttribute('id', `div${n}`);
+                    element.setAttribute('class', 'gridDiv');
+                    element.addEventListener('click', function () {
+                        // add function depending on who starts, then the rest is easy to figure out.
+                        const idVal = (this.id).slice(3);
+                        console.log(idVal);
+                        // start here -- find out whether it's O or X then create new array with replacement of selected div with symbol
+                        // remove the eventListener from the div that was clicked. OR disable it, whichever makes the most sense.
+
+
+                        //add symbol to element.
+                            // * update array and return new board with selected move change.
+
+                        // figure out whos go it is and when they click on a tile, input their symbol.
+                        //console.log(whoStarts + ' starts!');
+                    });
+
+                    boardContainer.appendChild(element);
+                    return _genBoard(n+1);
+                };
+
+                _genBoard(n); //run function
+            };
+
+            _start(); //run function
+
+
+        } else if (whoStarts = 0) {
+
+            const _makeMove = () => {
+                
+            };
+
+        } else {
+            console.log('an error has occurred.');
+        }
+        
+
     };
 
     return {
@@ -90,7 +125,6 @@ const displayBoard = (() => {
                 subBtn.addEventListener('click', function() {
                     // function for submit button
                     const player1 = Player(nameInput.value, symbolSelect.value, 0);
-                    console.log(player1);
                     // create player 2 object
                     p1Header.remove();
                     formLoc.reset();
@@ -111,14 +145,20 @@ const displayBoard = (() => {
                         // disable crosses option
                         crossOpt.setAttribute('disabled', '');
                     }
+
+
                     subBtn2.addEventListener('click', function() {
                         const player2 = Player(nameInput.value, symbolSelect.value, 0);
                         //formLoc.reset();
-
+                        const whoCoin = Math.floor(Math.random() * 10);
                         //decide who goes first
-                        
-                        //generate the board grid
-                        gameBoard.create();
+                        if (whoCoin >= 5) {
+                            const whoStarts = 'player1';
+                            gameBoard.create(player1, player2, whoStarts);
+                        } else if (whoCoin <= 4) {
+                            const whoStarts = 'player2';
+                            gameBoard.create(player1, player2, whoStarts);
+                        }
                     });
                 });
             });
@@ -127,7 +167,7 @@ const displayBoard = (() => {
 
         });
 
-    }
+    };
     return { 
         create
     }
