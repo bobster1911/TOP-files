@@ -1,9 +1,9 @@
 // the logic behind the state of the game board.
 const gameBoard = (() => {
 
-    const create = (playerOne, playerTwo, whoStarts = 0) => {
-        if (whoStarts != 0) {
-            const _start = () => { //define function
+    const play = (playerOne, playerTwo, currentPlayer, startOrMove) => {
+        if (startOrMove = 'start') { 
+            const _start = (currentPlayer) => {
 
                 // create blank array
                 const LEN = 9;
@@ -28,8 +28,19 @@ const gameBoard = (() => {
                     element.addEventListener('click', function () {
                         // add function depending on who starts, then the rest is easy to figure out.
                         const idVal = (this.id).slice(3);
-                        console.log(idVal);
+                        const index = (parseFloat(idVal) + parseFloat(1));
+                        // how to determine who is the current player...
+                        console.log(currentPlayer.symbol);
+                        if (currentPlayer.symbol = 'x') {
+                            // create new array with updated data ***
+                        } else if (currentPlayer.symbol = 'o') {
+                            // create new array with updated data ***
+                        } else {
+                            console.log('An error has occurred.')
+                        }
+
                         // start here -- find out whether it's O or X then create new array with replacement of selected div with symbol
+
                         // remove the eventListener from the div that was clicked. OR disable it, whichever makes the most sense.
 
 
@@ -46,25 +57,22 @@ const gameBoard = (() => {
 
                 _genBoard(n); //run function
             };
+            _start(currentPlayer);
 
-            _start(); //run function
+        } else if (startOrMove = 'move') {
 
-
-        } else if (whoStarts = 0) {
-
-            const _makeMove = () => {
-                
+            const _makeMove = (currentPlayer) => {
+                // define makeMove function
             };
+            _makeMove();
 
         } else {
-            console.log('an error has occurred.');
+            console.log('Something went wrong.');
         }
-        
-
     };
 
     return {
-        create
+        play
     };
 
 }) ();
@@ -105,7 +113,7 @@ const displayBoard = (() => {
                 const enNd = document.getElementById('enDiv');
 
                 // field for typing name, drop down for symbol select
-                magicModule.makeForm(enNd, 'symbol', 'naughts', 'crosses');
+                magicModule.makeForm(enNd, 'symbol', 'o', 'x');
 
                 // remove player buttons
                 button1.remove();
@@ -138,11 +146,11 @@ const displayBoard = (() => {
                     magicModule.ins(enNd, formLoc, 'p', 'p2Header');
                     const p2Header = document.getElementById('p2Header');
                     p2Header.innerHTML = 'Player 2';
-                    if (player1.symbol == 'naughts') {
-                        // disable naughts option
+                    if (player1.symbol == 'o') {
+                        // disable o option
                         nauOpt.setAttribute('disabled', '');
-                    } else if (player1.symbol == 'crosses') {
-                        // disable crosses option
+                    } else if (player1.symbol == 'x') {
+                        // disable x option
                         crossOpt.setAttribute('disabled', '');
                     }
 
@@ -153,11 +161,11 @@ const displayBoard = (() => {
                         const whoCoin = Math.floor(Math.random() * 10);
                         //decide who goes first
                         if (whoCoin >= 5) {
-                            const whoStarts = 'player1';
-                            gameBoard.create(player1, player2, whoStarts);
+                            const whoStarts = player1;
+                            gameBoard.play(player1, player2, whoStarts, 'start');
                         } else if (whoCoin <= 4) {
-                            const whoStarts = 'player2';
-                            gameBoard.create(player1, player2, whoStarts);
+                            const whoStarts = player2;
+                            gameBoard.play(player1, player2, whoStarts, 'start');
                         }
                     });
                 });
