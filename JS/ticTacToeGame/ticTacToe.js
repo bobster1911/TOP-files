@@ -28,13 +28,30 @@ const gameBoard = (() => {
                     element.addEventListener('click', function () {
                         // add function depending on who starts, then the rest is easy to figure out.
                         const idVal = (this.id).slice(3);
-                        const index = (parseFloat(idVal) + parseFloat(1));
+                        //const index = (parseFloat(idVal) + parseFloat(1));
                         // how to determine who is the current player...
                         console.log(currentPlayer.symbol);
                         if (currentPlayer.symbol = 'x') {
                             // create new array with updated data ***
+                            const newArray = arr.map((i, j) => {if (j == idVal) {
+                                    return currentPlayer.symbol; 
+                                } else {
+                                    return i;
+                                }});
+                            console.log(newArray);
+                            // set current player in function call
+                            console.log('create new array');
                         } else if (currentPlayer.symbol = 'o') {
                             // create new array with updated data ***
+                            const newArray = arr.map((i, j) => {if (j == idVal) {
+                                    return currentPlayer.symbol;
+                                } else {
+                                    return i;
+                                } 
+                        });
+                            console.log(newArray);
+                            // set current player in function call
+                            console.log('create new array');
                         } else {
                             console.log('An error has occurred.')
                         }
