@@ -29,19 +29,21 @@ const gameBoard = (() => {
                         // add function depending on who starts, then the rest is easy to figure out.
                         const idVal = (this.id).slice(3);
                         //const index = (parseFloat(idVal) + parseFloat(1));
+
                         // how to determine who is the current player...
-                        console.log(currentPlayer.symbol);
-                        if (currentPlayer.symbol = 'x') {
+                        if (currentPlayer.symbol == 'x') { 
                             // create new array with updated data ***
                             const newArray = arr.map((i, j) => {if (j == idVal) {
                                     return currentPlayer.symbol; 
                                 } else {
                                     return i;
                                 }});
+
                             console.log(newArray);
+                            // translate array to display
+                            
                             // set current player in function call
-                            console.log('create new array');
-                        } else if (currentPlayer.symbol = 'o') {
+                        } else if (currentPlayer.symbol == 'o') {
                             // create new array with updated data ***
                             const newArray = arr.map((i, j) => {if (j == idVal) {
                                     return currentPlayer.symbol;
@@ -49,23 +51,14 @@ const gameBoard = (() => {
                                     return i;
                                 } 
                         });
+
                             console.log(newArray);
-                            // set current player in function call
-                            console.log('create new array');
+                            // translate array to display
+
+
                         } else {
                             console.log('An error has occurred.')
                         }
-
-                        // start here -- find out whether it's O or X then create new array with replacement of selected div with symbol
-
-                        // remove the eventListener from the div that was clicked. OR disable it, whichever makes the most sense.
-
-
-                        //add symbol to element.
-                            // * update array and return new board with selected move change.
-
-                        // figure out whos go it is and when they click on a tile, input their symbol.
-                        //console.log(whoStarts + ' starts!');
                     });
 
                     boardContainer.appendChild(element);
@@ -74,12 +67,13 @@ const gameBoard = (() => {
 
                 _genBoard(n); //run function
             };
-            _start(currentPlayer);
+            _start(currentPlayer); // I think these functions may be redundant but not sure....
 
         } else if (startOrMove = 'move') {
 
             const _makeMove = (currentPlayer) => {
                 // define makeMove function
+
             };
             _makeMove();
 
@@ -97,7 +91,7 @@ const gameBoard = (() => {
 // module for GUI and game board display
 const displayBoard = (() => {
 
-    const create = () => { // might consider implementing closure for this 'create' method.
+    const create = () => {
 
         // Create container and start button
         magicModule.create(document.body, 'div', 'btnContainer');
@@ -177,6 +171,7 @@ const displayBoard = (() => {
                         //formLoc.reset();
                         const whoCoin = Math.floor(Math.random() * 10);
                         //decide who goes first
+
                         if (whoCoin >= 5) {
                             const whoStarts = player1;
                             gameBoard.play(player1, player2, whoStarts, 'start');
@@ -193,8 +188,14 @@ const displayBoard = (() => {
         });
 
     };
+
+    const updateBoard = (newArray) => {
+        // map array to display
+        // cycle through divs and change their innerHTML accordingly.
+    }
     return { 
-        create
+        create,
+        updateBoard
     }
 }) ();
 
