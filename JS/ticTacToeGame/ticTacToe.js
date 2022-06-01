@@ -39,8 +39,7 @@ const gameBoard = (() => {
                                     return i;
                                 }});
 
-                            console.log(newArray);
-                            // translate array to display
+                                displayBoard.updateBoard(newArray);
                             
                             // set current player in function call
                         } else if (currentPlayer.symbol == 'o') {
@@ -52,9 +51,8 @@ const gameBoard = (() => {
                                 } 
                         });
 
-                            console.log(newArray);
                             // translate array to display
-
+                            displayBoard.updateBoard(newArray);
 
                         } else {
                             console.log('An error has occurred.')
@@ -191,7 +189,9 @@ const displayBoard = (() => {
 
     const updateBoard = (newArray) => {
         // map array to display
+        console.log(newArray);
         // cycle through divs and change their innerHTML accordingly.
+        
     }
     return { 
         create,
