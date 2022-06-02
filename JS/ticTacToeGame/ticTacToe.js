@@ -191,7 +191,8 @@ const displayBoard = (() => {
         // map array to display
         console.log(newArray);
         // cycle through divs and change their innerHTML accordingly.
-        
+        const element = document.getElementById('boardContainer');
+        console.log(element);
     }
     return { 
         create,
