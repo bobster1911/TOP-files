@@ -2,7 +2,7 @@
 const gameBoard = (() => {
 
     const play = (playerOne, playerTwo, currentPlayer, startOrMove) => {
-        if (startOrMove = 'start') { 
+        if (startOrMove == 'start') { 
             const _start = (currentPlayer) => {
 
                 // create blank array
@@ -28,19 +28,18 @@ const gameBoard = (() => {
                     element.addEventListener('click', function () {
                         // add function depending on who starts, then the rest is easy to figure out.
                         const idVal = (this.id).slice(3);
-                        //const index = (parseFloat(idVal) + parseFloat(1));
 
-                        // how to determine who is the current player...
                         if (currentPlayer.symbol == 'x') { 
                             // create new array with updated data ***
                             const newArray = arr.map((i, j) => {if (j == idVal) {
-                                    return currentPlayer.symbol; 
-                                } else {
-                                    return i;
-                                }});
+                                return currentPlayer.symbol; 
+                            } else {
+                                return i;
+                            }});
 
-                                displayBoard.updateBoard(newArray);
-                            
+                            displayBoard.updateBoard(newArray);
+                            gameBoard.play(playerOne, playerTwo, currentPlayer, 'move');
+                                
                             // set current player in function call
                         } else if (currentPlayer.symbol == 'o') {
                             // create new array with updated data ***
@@ -51,8 +50,8 @@ const gameBoard = (() => {
                                 } 
                         });
 
-                            // translate array to display
                             displayBoard.updateBoard(newArray);
+                            gameBoard.play(playerOne, playerTwo, currentPlayer, 'move');
 
                         } else {
                             console.log('An error has occurred.')
@@ -64,16 +63,28 @@ const gameBoard = (() => {
                 };
 
                 _genBoard(n); //run function
-            };
-            _start(currentPlayer); // I think these functions may be redundant but not sure....
 
-        } else if (startOrMove = 'move') {
+
+            };
+            _start(currentPlayer); 
+
+        } else if (startOrMove == 'move') {
 
             const _makeMove = (currentPlayer) => {
                 // define makeMove function
+                if (currentPlayer.symbol == playerOne.symbol) {
+                    currentPlayer = playerTwo;
+                    // regen board with new player
+                } else if (currentPlayer.symbol == playerTwo.symbol) {
+                    currentPlayer = playerOne;
+                    // regen board with new player
+                } else {
+                    console.log('An error has occurred with deciding the player turn in _makeMove');
+                }
 
             };
-            _makeMove();
+
+            _makeMove(currentPlayer);
 
         } else {
             console.log('Something went wrong.');
@@ -193,7 +204,22 @@ const displayBoard = (() => {
         // cycle through divs and change their innerHTML accordingly.
         const element = document.getElementById('boardContainer');
         console.log(element);
+        const cellDivs = element.getElementsByTagName('div');
+        // declare function
+        const _populate = (n) => {
+            if (n < 0 || n > 8) {
+                console.log('finished populating board game cells.');
+                return;
+            } else {
+                cellDivs[n].innerHTML = newArray[n];
+            }
+            return _populate(n+1);
+        }
+        // call function
+        _populate(0);
+        
     }
+
     return { 
         create,
         updateBoard
