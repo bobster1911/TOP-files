@@ -1,7 +1,7 @@
 // the logic behind the state of the game board.
 const gameBoard = (() => {
 
-    const play = (playerOne, playerTwo, currentPlayer, startOrMove) => {
+    const play = (playerOne, playerTwo, currentPlayer, currentArray = [], startOrMove) => {
         if (startOrMove == 'start') { 
             const _start = (currentPlayer) => {
 
@@ -38,7 +38,7 @@ const gameBoard = (() => {
                             }});
 
                             displayBoard.updateBoard(newArray);
-                            gameBoard.play(playerOne, playerTwo, currentPlayer, 'move');
+                            gameBoard.play(playerOne, playerTwo, currentPlayer, [], 'move');
                                 
                             // set current player in function call
                         } else if (currentPlayer.symbol == 'o') {
@@ -51,7 +51,7 @@ const gameBoard = (() => {
                         });
 
                             displayBoard.updateBoard(newArray);
-                            gameBoard.play(playerOne, playerTwo, currentPlayer, 'move');
+                            gameBoard.play(playerOne, playerTwo, currentPlayer, [], 'move');
 
                         } else {
                             console.log('An error has occurred.')
@@ -70,21 +70,23 @@ const gameBoard = (() => {
 
         } else if (startOrMove == 'move') {
 
-            const _makeMove = (currentPlayer) => {
+            const _makeMove = (currentPlayer, currentArray) => {
                 // define makeMove function
                 if (currentPlayer.symbol == playerOne.symbol) {
                     currentPlayer = playerTwo;
                     // regen board with new player
+                    // HERE
                 } else if (currentPlayer.symbol == playerTwo.symbol) {
                     currentPlayer = playerOne;
                     // regen board with new player
+                    // HERE
                 } else {
                     console.log('An error has occurred with deciding the player turn in _makeMove');
                 }
 
             };
 
-            _makeMove(currentPlayer);
+            _makeMove(currentPlayer, currentArray);
 
         } else {
             console.log('Something went wrong.');
@@ -183,10 +185,10 @@ const displayBoard = (() => {
 
                         if (whoCoin >= 5) {
                             const whoStarts = player1;
-                            gameBoard.play(player1, player2, whoStarts, 'start');
+                            gameBoard.play(player1, player2, whoStarts, [], 'start');
                         } else if (whoCoin <= 4) {
                             const whoStarts = player2;
-                            gameBoard.play(player1, player2, whoStarts, 'start');
+                            gameBoard.play(player1, player2, whoStarts, [], 'start');
                         }
                     });
                 });
