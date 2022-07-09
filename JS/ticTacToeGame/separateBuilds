@@ -1,0 +1,39 @@
+// first click needs to set counter to 1 and reapply the eventlistener click function to all cells.
+// display new array
+// review status
+// continue game or announce result
+
+//CURRENT: use existing function but at the end it needs to reapply itself to the grid cells with mfm equal to 1 in 
+        // it's arguments
+    
+myMyFunction = (n) => {
+    //base case
+    if (n < 0 || n > 8) {
+        return;
+    }
+
+    _myFunction = (mfm = 0, currentPlayer, moveArray = []) => {
+        const idVal = (this.id).slice(3); // array index selection to place the move.
+            //base case for recursion
+
+            if (mfm == 0) {
+                // make move using initial array
+                const newArray = arr.map((i, j) => {if (j == idVal) {
+                    return currentPlayer.symbol; 
+                } else {
+                    return i;
+                }});
+
+                displayBoard.updateBoard(newArray);
+
+            } else if (mfm == 1) {
+                // use new array and create next array from that, just make a move
+                
+                // at end:
+                _myFunction(1, );
+            } else {
+                console.log('something went wrong');
+            }
+    }
+
+}

@@ -1,8 +1,9 @@
 // the logic behind the state of the game board.
 const gameBoard = (() => {
 
-    const play = (playerOne, playerTwo, currentPlayer, currentArray = [], startOrMove) => {
-        if (startOrMove == 'start') { 
+    const play = (playerOne, playerTwo, currentPlayer, currentArray = []) => {
+
+            // MAY BE ABLE TO CLEAN UP THE START AND MOVE OPTIONS - UNNECESSARY
             const _start = (currentPlayer) => {
 
                 // create blank array
@@ -18,29 +19,40 @@ const gameBoard = (() => {
                 const _genBoard = (n) => { //define function
                     // base case
                     if (n < 0 || n > 8) {
-                        console.log('finished recursion for generating board divs.');
                         return;
                     }
                     //recursion in replace of a for loop
                     const element = document.createElement('div');
                     element.setAttribute('id', `div${n}`);
                     element.setAttribute('class', 'gridDiv');
+
                     element.addEventListener('click', function () {
-                        // add function depending on who starts, then the rest is easy to figure out.
-                        const idVal = (this.id).slice(3);
+                        // figure out whether it's possible to use this function alone.
+                        const idVal = (this.id).slice(3); // array index selection to place the move.
 
                         if (currentPlayer.symbol == 'x') { 
-                            // create new array with updated data ***
+                            // create new array with updated data
                             const newArray = arr.map((i, j) => {if (j == idVal) {
                                 return currentPlayer.symbol; 
                             } else {
                                 return i;
                             }});
+                            
+                            // change currentPlayer
+                            if (currentPlayer.symbol == playerOne.symbol) {
+                                currentPlayer = playerTwo;
+            
+                            } else if (currentPlayer.symbol == playerTwo.symbol) {
+                                currentPlayer = playerOne;
+            
+                            } else {
+                                console.log('An error has occurred.');
+                            }
 
                             displayBoard.updateBoard(newArray);
-                            gameBoard.play(playerOne, playerTwo, currentPlayer, [], 'move');
+                            //gameBoard.play(playerOne, playerTwo, currentPlayer, newArray, 'move'); // CLEAN ARGS
                                 
-                            // set current player in function call
+                        // set current player in function call
                         } else if (currentPlayer.symbol == 'o') {
                             // create new array with updated data ***
                             const newArray = arr.map((i, j) => {if (j == idVal) {
@@ -49,9 +61,19 @@ const gameBoard = (() => {
                                     return i;
                                 } 
                         });
+                            // change currentPlayer
+                            if (currentPlayer.symbol == playerOne.symbol) {
+                                currentPlayer = playerTwo;
+            
+                            } else if (currentPlayer.symbol == playerTwo.symbol) {
+                                currentPlayer = playerOne;
+            
+                            } else {
+                                console.log('An error has occurred.');
+                            }
 
                             displayBoard.updateBoard(newArray);
-                            gameBoard.play(playerOne, playerTwo, currentPlayer, [], 'move');
+                            //gameBoard.play(playerOne, playerTwo, currentPlayer, newArray, 'move');
 
                         } else {
                             console.log('An error has occurred.')
@@ -64,40 +86,15 @@ const gameBoard = (() => {
 
                 _genBoard(n); //run function
 
-
             };
+
             _start(currentPlayer); 
-
-        } else if (startOrMove == 'move') {
-
-            const _makeMove = (currentPlayer, currentArray) => {
-                // define makeMove function
-                if (currentPlayer.symbol == playerOne.symbol) {
-                    currentPlayer = playerTwo;
-                    // regen board with new player
-                    // HERE
-                } else if (currentPlayer.symbol == playerTwo.symbol) {
-                    currentPlayer = playerOne;
-                    // regen board with new player
-                    // HERE
-                } else {
-                    console.log('An error has occurred with deciding the player turn in _makeMove');
-                }
-
-            };
-
-            _makeMove(currentPlayer, currentArray);
-
-        } else {
-            console.log('Something went wrong.');
-        }
-    };
-
+    
     return {
         play
     };
 
-}) ();
+}}) ();
 
 // module for GUI and game board display
 const displayBoard = (() => {
@@ -200,17 +197,16 @@ const displayBoard = (() => {
 
     };
 
-    const updateBoard = (newArray) => {
-        // map array to display
-        console.log(newArray);
+    const updateBoard = (newArray) => { // USE: map array to display
+       
         // cycle through divs and change their innerHTML accordingly.
         const element = document.getElementById('boardContainer');
-        console.log(element);
+
         const cellDivs = element.getElementsByTagName('div');
         // declare function
         const _populate = (n) => {
             if (n < 0 || n > 8) {
-                console.log('finished populating board game cells.');
+                // cycles through recursively
                 return;
             } else {
                 cellDivs[n].innerHTML = newArray[n];
@@ -237,7 +233,6 @@ const Player = (name, symbol, score) => {
 		score
 	};
 };
-
 
 // module with functions that create elements to save me time.
 const magicModule = (() => {
@@ -297,8 +292,6 @@ const magicModule = (() => {
         makeForm
     }
 }) ();
-
-
 
 displayBoard.create();
 
