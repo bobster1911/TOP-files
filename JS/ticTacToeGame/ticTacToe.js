@@ -1,10 +1,11 @@
 // the logic behind the state of the game board.
 const gameBoard = (() => {
 
-    const play = (playerOne, playerTwo, currentPlayer, currentArray = []) => {
+    const play = (playerOne, playerTwo, startPlayer, startOrMove, lastArray = []) => { // if statement depending on start or move
 
-            // MAY BE ABLE TO CLEAN UP THE START AND MOVE OPTIONS - UNNECESSARY
-            const _start = (currentPlayer) => {
+        if (startOrMove == 'start') { // mark parameters correctly where this is first called. []
+        
+            const _start = (startPlayer) => {
 
                 // create blank array
                 const LEN = 9;
@@ -16,85 +17,103 @@ const gameBoard = (() => {
                 container.setAttribute('class', 'gridContainer');
                 document.body.appendChild(container);
 
-                const _genBoard = (n) => { //define function
+                const _genBoard = (n) => { 
                     // base case
                     if (n < 0 || n > 8) {
                         return;
                     }
-                    //recursion in replace of a for loop
+
                     const element = document.createElement('div');
                     element.setAttribute('id', `div${n}`);
                     element.setAttribute('class', 'gridDiv');
+                    // add function to cells
+                    const _addClickFunction = () => { //might be able to get rid of this.
 
-                    element.addEventListener('click', function () {
-                        // figure out whether it's possible to use this function alone.
-                        const idVal = (this.id).slice(3); // array index selection to place the move.
+                        element.addEventListener('click', function () {
+                            // figure out whether it's possible to use this function alone.
+                            const idVal = (this.id).slice(3); // array index selection to place the move.
 
-                        if (currentPlayer.symbol == 'x') { 
-                            // create new array with updated data
-                            const newArray = arr.map((i, j) => {if (j == idVal) {
-                                return currentPlayer.symbol; 
-                            } else {
-                                return i;
-                            }});
-                            
-                            // change currentPlayer
-                            if (currentPlayer.symbol == playerOne.symbol) {
-                                currentPlayer = playerTwo;
-            
-                            } else if (currentPlayer.symbol == playerTwo.symbol) {
-                                currentPlayer = playerOne;
-            
-                            } else {
-                                console.log('An error has occurred.');
-                            }
-
-                            displayBoard.updateBoard(newArray);
-                            //gameBoard.play(playerOne, playerTwo, currentPlayer, newArray, 'move'); // CLEAN ARGS
-                                
-                        // set current player in function call
-                        } else if (currentPlayer.symbol == 'o') {
-                            // create new array with updated data ***
-                            const newArray = arr.map((i, j) => {if (j == idVal) {
-                                    return currentPlayer.symbol;
+                                // create new array with updated data
+                                const newArray = arr.map((i, j) => {if (j == idVal) {
+                                    return startPlayer.symbol; 
                                 } else {
                                     return i;
-                                } 
+                                }});
+                                
+                                // change startPlayer
+                                if (startPlayer.symbol == playerOne.symbol) {
+                                    startPlayer = playerTwo;
+                
+                                } else if (startPlayer.symbol == playerTwo.symbol) {
+                                    startPlayer = playerOne;
+                
+                                } else {
+                                    console.log('An error has occurred.');
+                                }
+
+                                displayBoard.updateBoard(newArray); //displays move
+                                gameBoard.play(playerOne, playerTwo, startPlayer, 'move', newArray); //sets up event listeners for next move
                         });
-                            // change currentPlayer
-                            if (currentPlayer.symbol == playerOne.symbol) {
-                                currentPlayer = playerTwo;
-            
-                            } else if (currentPlayer.symbol == playerTwo.symbol) {
-                                currentPlayer = playerOne;
-            
-                            } else {
-                                console.log('An error has occurred.');
-                            }
-
-                            displayBoard.updateBoard(newArray);
-                            //gameBoard.play(playerOne, playerTwo, currentPlayer, newArray, 'move');
-
-                        } else {
-                            console.log('An error has occurred.')
-                        }
-                    });
-
+                    }
+                    _addClickFunction();
                     boardContainer.appendChild(element);
                     return _genBoard(n+1);
                 };
-
-                _genBoard(n); //run function
-
+                _genBoard(n); 
             };
+            _start(startPlayer); 
 
-            _start(currentPlayer); 
-    
+        } else if (startOrMove == 'move') {
+
+            const _move = (lastArray) => {
+
+                const _reMapDivs = (n) => { 
+                    // base case
+                    if (n < 0 || n > 8) {
+                        return;
+                    }
+                    const element = document.getElementById(`div${n}`);
+                    element.removeEventListener();
+                    element.addEventListener('click', function () {
+
+                        const idVal = (this.id).slice(3); // array index selection to place the move.
+                        // create new array with updated data
+                        const newArray = lastArray.map((i, j) => {if (j == idVal) {
+                            return startPlayer.symbol; 
+                        } else {
+                            return i;
+                        }});
+
+                        // change startPlayer
+                        if (startPlayer.symbol == playerOne.symbol) {
+                            startPlayer = playerTwo;
+        
+                        } else if (startPlayer.symbol == playerTwo.symbol) {
+                            startPlayer = playerOne;
+        
+                        } else {
+                            console.log('An error has occurred.');
+                        }
+
+                        displayBoard.updateBoard(newArray); //displays move
+                        gameBoard.play(playerOne, playerTwo, startPlayer, 'move', newArray); //sets up event listeners for next move
+                    });
+                    
+                    return _reMapDivs(n+1);
+                }; 
+                _reMapDivs(n);
+            } 
+            _move(lastArray);
+        } else {
+            console.log('something went wrong.')
+        };
+
+}
     return {
         play
-    };
-
-}}) ();
+    }
+    
+}) ();
 
 // module for GUI and game board display
 const displayBoard = (() => {
@@ -182,10 +201,10 @@ const displayBoard = (() => {
 
                         if (whoCoin >= 5) {
                             const whoStarts = player1;
-                            gameBoard.play(player1, player2, whoStarts, [], 'start');
+                            gameBoard.play(player1, player2, whoStarts, 'start', []);
                         } else if (whoCoin <= 4) {
                             const whoStarts = player2;
-                            gameBoard.play(player1, player2, whoStarts, [], 'start');
+                            gameBoard.play(player1, player2, whoStarts, 'start', []);
                         }
                     });
                 });
