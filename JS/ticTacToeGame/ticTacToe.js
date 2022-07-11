@@ -1,16 +1,47 @@
 // the logic behind the state of the game board.
 const gameBoard = (() => {
 
-    const play = (playerOne, playerTwo, startPlayer, startOrMove, lastArray = []) => { // if statement depending on start or move
 
-        if (startOrMove == 'start') { // mark parameters correctly where this is first called. []
+
+    const play = (playerOne, playerTwo, startPlayer, startOrMove, lastArray = []) => { // if statement depending on start or move
         
+        const LEN = 9;
+        const n = 0; 
+        const arr = new Array (LEN).fill(0);
+
+        const _initialClickerF = function () {
+            const idVal = (this.id).slice(3); // array index selection to place the move.
+
+            // create new array with updated data
+            const newArray = arr.map((i, j) => {if (j == idVal) {
+                return startPlayer.symbol; 
+            } else {
+                return i;
+            }});
+            
+            // change startPlayer
+            if (startPlayer.symbol == playerOne.symbol) {
+                startPlayer = playerTwo;
+
+            } else if (startPlayer.symbol == playerTwo.symbol) {
+                startPlayer = playerOne;
+
+            } else {
+                console.log('An error has occurred.');
+            }
+
+            displayBoard.updateBoard(newArray); //displays move
+            gameBoard.play(playerOne, playerTwo, startPlayer, 'move', newArray); //sets up event listeners for next move
+
+}
+
+        const _addClicker = function () {
+            console.log(this);
+        }
+
+        if (startOrMove == 'start') {
             const _start = (startPlayer) => {
 
-                // create blank array
-                const LEN = 9;
-                const n = 0; 
-                const arr = new Array (LEN).fill(0);
                 //recursive function for creating the divs for the ticTacToe board.
                 const container = document.createElement('div');
                 container.setAttribute('id', 'boardContainer');
@@ -27,35 +58,9 @@ const gameBoard = (() => {
                     element.setAttribute('id', `div${n}`);
                     element.setAttribute('class', 'gridDiv');
                     // add function to cells
-                    const _addClickFunction = () => { //might be able to get rid of this.
 
-                        element.addEventListener('click', function () {
-                            // figure out whether it's possible to use this function alone.
-                            const idVal = (this.id).slice(3); // array index selection to place the move.
+                    element.addEventListener('click', _initialClickerF);
 
-                                // create new array with updated data
-                                const newArray = arr.map((i, j) => {if (j == idVal) {
-                                    return startPlayer.symbol; 
-                                } else {
-                                    return i;
-                                }});
-                                
-                                // change startPlayer
-                                if (startPlayer.symbol == playerOne.symbol) {
-                                    startPlayer = playerTwo;
-                
-                                } else if (startPlayer.symbol == playerTwo.symbol) {
-                                    startPlayer = playerOne;
-                
-                                } else {
-                                    console.log('An error has occurred.');
-                                }
-
-                                displayBoard.updateBoard(newArray); //displays move
-                                gameBoard.play(playerOne, playerTwo, startPlayer, 'move', newArray); //sets up event listeners for next move
-                        });
-                    }
-                    _addClickFunction();
                     boardContainer.appendChild(element);
                     return _genBoard(n+1);
                 };
@@ -67,43 +72,10 @@ const gameBoard = (() => {
 
             const _move = (lastArray) => {
 
-                const _reMapDivs = (n) => { 
-                    // base case
-                    if (n < 0 || n > 8) {
-                        return;
-                    }
-                    const element = document.getElementById(`div${n}`);
-                    element.removeEventListener();
-                    element.addEventListener('click', function () {
-
-                        const idVal = (this.id).slice(3); // array index selection to place the move.
-                        // create new array with updated data
-                        const newArray = lastArray.map((i, j) => {if (j == idVal) {
-                            return startPlayer.symbol; 
-                        } else {
-                            return i;
-                        }});
-
-                        // change startPlayer
-                        if (startPlayer.symbol == playerOne.symbol) {
-                            startPlayer = playerTwo;
-        
-                        } else if (startPlayer.symbol == playerTwo.symbol) {
-                            startPlayer = playerOne;
-        
-                        } else {
-                            console.log('An error has occurred.');
-                        }
-
-                        displayBoard.updateBoard(newArray); //displays move
-                        gameBoard.play(playerOne, playerTwo, startPlayer, 'move', newArray); //sets up event listeners for next move
-                    });
-                    
-                    return _reMapDivs(n+1);
-                }; 
-                _reMapDivs(n);
+                
             } 
             _move(lastArray);
+
         } else {
             console.log('something went wrong.')
         };
@@ -112,7 +84,7 @@ const gameBoard = (() => {
     return {
         play
     }
-    
+
 }) ();
 
 // module for GUI and game board display
