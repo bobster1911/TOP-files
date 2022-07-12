@@ -1,8 +1,6 @@
 // the logic behind the state of the game board.
 const gameBoard = (() => {
 
-
-
     const play = (playerOne, playerTwo, startPlayer, startOrMove, lastArray = []) => { // if statement depending on start or move
         
         const LEN = 9;
@@ -31,12 +29,32 @@ const gameBoard = (() => {
             }
 
             displayBoard.updateBoard(newArray); //displays move
-            gameBoard.play(playerOne, playerTwo, startPlayer, 'move', newArray); //sets up event listeners for next move
+            gameBoard.play(playerOne, playerTwo, startPlayer, 'setup', newArray); //sets up event listeners for next move
 
 }
-
         const _addClicker = function () {
-            console.log(this);
+
+            const idVal = (this.id).slice(3); // array index selection to place the move.
+            // create new array with updated data
+            const newArray = lastArray.map((i, j) => {if (j == idVal) {
+                return startPlayer.symbol; 
+            } else {
+                return i;
+            }});
+        
+            // change startPlayer
+            if (startPlayer.symbol == playerOne.symbol) {
+                startPlayer = playerTwo;
+        
+            } else if (startPlayer.symbol == playerTwo.symbol) {
+                startPlayer = playerOne;
+        
+            } else {
+                console.log('An error has occurred.');
+            }
+        
+            displayBoard.updateBoard(newArray); //displays move
+            gameBoard.play(playerOne, playerTwo, startPlayer, 'move', newArray);
         }
 
         if (startOrMove == 'start') {
@@ -57,7 +75,6 @@ const gameBoard = (() => {
                     const element = document.createElement('div');
                     element.setAttribute('id', `div${n}`);
                     element.setAttribute('class', 'gridDiv');
-                    // add function to cells
 
                     element.addEventListener('click', _initialClickerF);
 
@@ -68,13 +85,31 @@ const gameBoard = (() => {
             };
             _start(startPlayer); 
 
+        } else if (startOrMove == 'setup') {
+            // remove initial clicker function from all divs
+            const _removeClicker = (n) => {
+                if (n < 0 || n > 8) {
+                    return;
+                }
+                const element = document.getElementById(`div${n}`);
+                element.remove();
+
+                const newElement = document.createElement('div');
+                newElement.setAttribute('id', `div${n}`);
+                newElement.setAttribute('class', 'gridDiv');
+                newElement.addEventListener('click', _addClicker);
+                boardContainer.appendChild(newElement);
+                return _removeClicker(n+1);
+
+            } 
+            _removeClicker(n);
+
+            displayBoard.updateBoard(lastArray); //displays move
+            gameBoard.play(playerOne, playerTwo, startPlayer, 'move', lastArray);
+
         } else if (startOrMove == 'move') {
 
-            const _move = (lastArray) => {
-
-                
-            } 
-            _move(lastArray);
+            console.log('make a move');
 
         } else {
             console.log('something went wrong.')

@@ -103,22 +103,10 @@ const _move = (lastArray) => {
         // base case
         if (n < 0 || n > 8) {
             return;
-        }
-
-        if (n == 8) {
-            console.log('last pick');
-
-        } else if (n == 0) {
-
-            const element = document.getElementById(`div${n}`);
-
-            element.removeEventListener('click', _initialClickerF);
-
-            element.addEventListener('click', _addClicker);
-
-        } else {
-
-        } 
+        }    
+        const element = document.getElementById(`div${n}`);
+        element.removeEventListener('click', _initialClickerF);
+        element.addEventListener('click', _addClicker);
         return _reMapDivs(n+1);
     }; 
     _reMapDivs(n);
