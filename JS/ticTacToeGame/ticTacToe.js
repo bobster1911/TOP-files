@@ -108,8 +108,8 @@ const gameBoard = (() => {
             gameBoard.play(playerOne, playerTwo, startPlayer, 'move', lastArray);
 
         } else if (startOrMove == 'move') {
-
-            console.log('make a move');
+            //displayBoard.updateBoard(lastArray);
+            //gameBoard.play(playerOne, playerTwo, startPlayer, 'move', lastArray);
 
         } else {
             console.log('something went wrong.')
