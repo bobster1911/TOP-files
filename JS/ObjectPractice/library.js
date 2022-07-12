@@ -39,13 +39,13 @@ function countbooksDisplayed() { // create a regular expression for selecting th
     return booksDisplayed;
 }
 
-
-//create a prototype for the book objects to list all of the objects properties.
-function Book(title, author, pages, read) {
-    this.title = title;
-    this.author = author;
-    this.numberOfPages = pages;
-    this.readYet = read;
+class Book {
+    constructor(title, author, pages, read) {
+        this.title = title;
+        this.author = author;
+        this.numberOfPages = pages;
+        this.readYet = read;
+    }
 }
 
 //Adds object to myLibrary array.
@@ -230,8 +230,6 @@ function off() {
     document.getElementById('addBookForm').style.display = 'none';
 }
 
-
-// --- SITE FLUFF ---
 
 
 

@@ -1,13 +1,14 @@
 // the logic behind the state of the game board.
 const gameBoard = (() => {
 
-    const play = (playerOne, playerTwo, startPlayer, startOrMove, lastArray = []) => { // if statement depending on start or move
+    const play = (playerOne, playerTwo, startPlayer, startOrMove, lastArray = [], forMove = '') => { // if statement depending on start or move
         
         const LEN = 9;
         const n = 0; 
         const arr = new Array (LEN).fill(0);
 
         const _initialClickerF = function () {
+
             const idVal = (this.id).slice(3); // array index selection to place the move.
 
             // create new array with updated data
@@ -33,7 +34,7 @@ const gameBoard = (() => {
 
 }
         const _addClicker = function () {
-
+            const forMove = this;
             const idVal = (this.id).slice(3); // array index selection to place the move.
             // create new array with updated data
             const newArray = lastArray.map((i, j) => {if (j == idVal) {
@@ -41,7 +42,6 @@ const gameBoard = (() => {
             } else {
                 return i;
             }});
-        
             // change startPlayer
             if (startPlayer.symbol == playerOne.symbol) {
                 startPlayer = playerTwo;
@@ -54,7 +54,7 @@ const gameBoard = (() => {
             }
         
             displayBoard.updateBoard(newArray); //displays move
-            gameBoard.play(playerOne, playerTwo, startPlayer, 'move', newArray);
+            gameBoard.play(playerOne, playerTwo, startPlayer, 'move', newArray, forMove);
         }
 
         if (startOrMove == 'start') {
@@ -105,11 +105,29 @@ const gameBoard = (() => {
             _removeClicker(n);
 
             displayBoard.updateBoard(lastArray); //displays move
-            gameBoard.play(playerOne, playerTwo, startPlayer, 'move', lastArray);
 
         } else if (startOrMove == 'move') {
-            //displayBoard.updateBoard(lastArray);
-            //gameBoard.play(playerOne, playerTwo, startPlayer, 'move', lastArray);
+            console.log(lastArray);
+            const idVal = (forMove.id).slice(3); // array index selection to place the move.
+            // create new array with updated data
+            const newArray = lastArray.map((i, j) => {if (j == idVal) {
+                return startPlayer.symbol; 
+            } else {
+                return i;
+            }});
+            console.log(newArray); // WHERE I CALLED IT -- not sure how to make the array change on move 3, pissing me off....
+            // change startPlayer
+            if (startPlayer.symbol == playerOne.symbol) {
+                startPlayer = playerTwo;
+        
+            } else if (startPlayer.symbol == playerTwo.symbol) {
+                startPlayer = playerOne;
+        
+            } else {
+                console.log('An error has occurred.');
+            }
+        
+            displayBoard.updateBoard(newArray);
 
         } else {
             console.log('something went wrong.')
