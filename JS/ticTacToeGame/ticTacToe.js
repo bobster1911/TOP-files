@@ -1,3 +1,8 @@
+
+
+// I'm going to start this project from the ground up and go through the code again so I understand all the parts and it will help me get up to speed again.
+
+
 // the logic behind the state of the game board.
 const gameBoard = (() => {
 
@@ -261,6 +266,7 @@ const Player = (name, symbol, score) => {
 };
 
 // module with functions that create elements to save me time.
+// break this down and get reaquainted with module structure, maybe trim it up and make it a little more readable ***
 const magicModule = (() => {
 
     const create = (loc, type, idName) => {
@@ -324,3 +330,6 @@ displayBoard.create();
 // FUNCTIONS to make for personal library:
 // create a basic form with js [ ]
 // * skeleton for recursion loop 
+
+// I'm going to start this project from the ground up and go through the code again so I understand all the parts and it will help me get up to speed again.
+
