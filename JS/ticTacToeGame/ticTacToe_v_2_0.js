@@ -10,9 +10,9 @@
 
 // Objects:
 // ========
-// players
-// gameBoard
-// displayController
+// players -factory function
+// gameBoard - module
+// displayController - module
 
 const playerMaker = (name, symbol) => {
     return { name, symbol };
@@ -22,11 +22,59 @@ const playerMaker = (name, symbol) => {
 const player1 = playerMaker('Rob', 'X');
 const player2 = playerMaker('Glacier', 'O');
 
-// generate the game array
-// NOTE: write down the variables to keep track of for the game
+// displayController module
+const displayController = ( () => {
 
-// which players turn it is 
-// 
+    const startMenu = () => {
+        // display main menu
+    };
+
+    const gameSetup = () => {
+      // player names and who goes first  
+    };
+
+    const display = () => {
+        // display the current logic from gameBoard
+    };
+
+    const end = () => {
+        // end screen displaying final result and option to play again or quit to main menu
+    };
+
+    return {
+        startMenu,
+        gameSetup,
+        display,
+        end
+    };
+}) ();
+
+// gameBoard module
+
+const gameBoard = ( () => {
+
+    const generate = () => {
+        // generate the blank array for gameboard
+    };
+
+    const update = () => {
+        // update the gameboard array based on last player's move
+        // alternate who's turn it is
+    };
+
+    const check = () => {
+        // check for empty cells
+        // check for 3-in-a-row conditions
+        // check for draw conditions (all cells used but no 3-in-a-row)
+    }
+
+    return {
+        generate,
+        update,
+        check,
+        end
+    };
+}) ();
 
 // ===========
 // Modules ---
@@ -42,54 +90,7 @@ const player2 = playerMaker('Glacier', 'O');
 
 const htmlModule = (() => {
 
-    const create = (location, type, idName) => {
 
-        const element = document.createElement(`${type}`);
-        element.setAttribute('id', `${idName}`);
-        location.appendChild(element);
-    }
-
-    const insert = (par, ref, type, idName) => {
-
-        const element = document.createElement(`${type}`);
-        element.setAttribute('id', `${idName}`);
-        par.insertBefore(element, ref);
-    }
-
-    const makeForm = (location, id, nauOpt, crossOpt) => {
-        
-        htmlModule.create(location, 'form', id);
-        const tForm = document.getElementById(id);
-        // input field and label
-        htmlModule.create(tForm, 'label', 'fname');
-        const tName = document.getElementById('fname');
-        tName.innerHTML = 'Name: ';
-        htmlModule.create(tForm, 'input', 'nameInput');
-        const nameInput = document.getElementById('nameInput');
-        nameInput.setAttribute('type', 'text');
-        nameInput.setAttribute('name', 'fname');
-
-        htmlModule.create(tForm, 'br');
-        
-        // dropdown symbol select
-        htmlModule.create(tForm, 'label', 'lSymbol');
-        const lSymbol = document.getElementById('lSymbol');
-        lSymbol.innerHTML = 'Symbol: ';
-        htmlModule.create(tForm, 'label', 'symbol');
-        htmlModule.create(tForm, 'select', 'symbolSelect');
-        const tSymbols = document.getElementById('symbolSelect');
-        tSymbols.setAttribute('name', 'symbols');
-        htmlModule.create(tSymbols, 'option', 'nauOpt');
-        const tnauOpt = document.getElementById('nauOpt');
-        htmlModule.create(tSymbols, 'option', 'crossOpt');
-        const tcrossOpt = document.getElementById('crossOpt');
-        // more efficient way to do this... ( get it to work first.)
-        // IMPROVE: use recursion to create x amount of options.
-        tnauOpt.innerHTML = nauOpt;
-        tnauOpt.setAttribute('value', nauOpt);
-        tcrossOpt.innerHTML = crossOpt;
-        tcrossOpt.setAttribute('value', crossOpt);
-    }
 
     return { 
         create,
@@ -97,3 +98,7 @@ const htmlModule = (() => {
         makeForm
     }
 }) ();
+
+// NEXT: build out htmlModule to facilitate building the elements for each stage of the game and to make the code
+//          more succinct and less wordy, yay.
+
