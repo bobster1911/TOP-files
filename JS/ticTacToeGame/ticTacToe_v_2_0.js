@@ -90,15 +90,38 @@ const gameBoard = ( () => {
 
 const htmlModule = (() => {
 
-
+    // creates and adds element 
+    const add = (location, type, idName) => {
+        const element = document.createElement(`${type}`); // string literal to parse the variable
+        element.setAttribute('id', `${idName}`);
+        location.appendChild(element);
+    }
+    // creates and inserts element to specific location 
+    const insert = (parentNode, reference, type, idName) => {
+        const element = document.createElement(`${type}`);
+        element.setAttribute('id', `${idName}`);
+        parentNode.insertBefore(element, reference);
+    }
+    // creates custom form
+    const form = (location, idName, option1, option2) => {
+        htmlModule.create(location, 'form', id);
+        const setupForm = document.getElementById(id);
+        // input field and label
+        
+    }
 
     return { 
-        create,
+        add,
         insert,
         makeForm
     }
 }) ();
 
-// NEXT: build out htmlModule to facilitate building the elements for each stage of the game and to make the code
-//          more succinct and less wordy, yay.
+// NEXT: draft how I want the setup form to look and build the custom form function.
+
+// THOUGHT:
+// for the array changing, I was thinking it would be a good idea to have a function that iterates over the array and 
+// gives an output of somekind for each cell, checking each one to then pass on the data so a new one can be created and 
+// the final result of the game can be determined.
+
 
