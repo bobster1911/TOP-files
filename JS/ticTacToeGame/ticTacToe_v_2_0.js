@@ -72,7 +72,7 @@ const gameBoard = ( () => {
         generate,
         update,
         check,
-        end
+        //end
     };
 }) ();
 
@@ -91,19 +91,20 @@ const gameBoard = ( () => {
 const htmlModule = (() => {
 
     // creates and adds element 
-    const add = (location, type, idName) => {
+    const add = (location, type, idName, contents) => {
         const element = document.createElement(`${type}`); // string literal to parse the variable
         element.setAttribute('id', `${idName}`);
+        element.innerHTML = `${contents}`;
         location.appendChild(element);
     }
-    // creates and inserts element to specific location 
+    // creates and inserts element to specific location for when multiple elements in a node
     const insert = (parentNode, reference, type, idName) => {
         const element = document.createElement(`${type}`);
         element.setAttribute('id', `${idName}`);
         parentNode.insertBefore(element, reference);
     }
     // creates custom form
-    const form = (location, idName, option1, option2) => {
+    const makeForm = (location, idName, option1, option2) => {
         htmlModule.create(location, 'form', id);
         const setupForm = document.getElementById(id);
         // input field and label
@@ -123,5 +124,34 @@ const htmlModule = (() => {
 // for the array changing, I was thinking it would be a good idea to have a function that iterates over the array and 
 // gives an output of somekind for each cell, checking each one to then pass on the data so a new one can be created and 
 // the final result of the game can be determined.
+
+// FUNCTIONS ---- NOTE: will have to reorganize these as I think I'm going to have ALOT of functions.
+// =========
+
+// startPage
+// Generate front page for Tic Tac Toe game
+
+// NOTE: I think I'm going to keep all of the processes in functions
+
+const playTicTacToe = () => { // [1]
+
+    htmlModule.add(document.body, 'button', 'start-btn', 'start');
+    // IDEA: I would like to add naughts and crosses animation with them all moving in the background.
+
+    const playerSelectPage = () => {
+        
+    }
+
+    const startButton = getElementById('start-btn');
+    startButton.setAttribute('onclick', ''); // create function for this
+
+
+}; // [1]
+
+
+
+
+
+
 
 
