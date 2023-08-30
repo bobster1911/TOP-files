@@ -118,7 +118,9 @@ const htmlModule = (() => {
     }
 }) ();
 
-// NEXT: draft how I want the setup form to look and build the custom form function.
+// NEXT: each time a new page setup is created, create a div container, so that removal only requires a single 
+//  div to be removed when possible.
+// --Currently creating the form for two player information.
 
 // THOUGHT:
 // for the array changing, I was thinking it would be a good idea to have a function that iterates over the array and 
@@ -135,22 +137,57 @@ const htmlModule = (() => {
 
 const playTicTacToe = () => { // [1]
 
-    htmlModule.add(document.body, 'button', 'start-btn', 'start');
-    // IDEA: I would like to add naughts and crosses animation with them all moving in the background.
+    const startPage = () => {
+        htmlModule.add(document.body, 'div', 'startPageDiv', '');
+        const startPageDiv = document.getElementById('startPageDiv');
+        htmlModule.add(startPageDiv, 'button', 'start-btn', 'start');
+        // IDEA: I would like to add naughts and crosses animation with them all moving in the background.
+        const startButton = document.getElementById('start-btn');
+        startButton.onclick =  function() { 
+            playerSelectPage(startPageDiv); 
+        };
+    };
+    // remove div each time or remove all contents of div?
+    // going to start with removing the div and creating a new one
 
-    const playerSelectPage = () => {
-        
+    const playerSelectPage = (rmDiv) => {
+        // remove start button
+        startPageDiv.remove();
+        // recreate div
+
+        // add player options to new div
+        htmlModule.add(, 'button', 'onePlayerBtn', '1 Player');
+        htmlModule.add(document.body, 'button', 'twoPlayerBtn', '2 Player');
+
+        const onePlayerBtn = document.getElementById('onePlayerBtn');
+        onePlayerBtn.onclick = function() {
+            onePlayerGame();
+        };
+        const twoPlayerBtn = document.getElementById('twoPlayerBtn');
+        twoPlayerBtn.onclick = function() {
+            twoPlayerGame();
+        };
+
     }
 
-    const startButton = getElementById('start-btn');
-    startButton.setAttribute('onclick', ''); // create function for this
+    const onePlayerGame = () => {
+        console.log('one player game selected');
+    }
 
+    const twoPlayerGame = () => {
+        console.log('two player game selected');
+    }
 
+    const twoPlayerForm = () => {
+        // remove buttons
+        // create form
+
+    }
+
+    startPage();
 }; // [1]
 
-
-
-
+playTicTacToe();
 
 
 
