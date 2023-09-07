@@ -14,23 +14,66 @@
 // gameBoard - module
 // displayController - module
 
-
+// ==== GLOBAL functions ====
 
 // create players and assign symbols
 // ***
-// const player1 = playerMaker('Rob', 'X');
-// const player2 = playerMaker('Glacier', 'O');
+
+const playerMaker = (name, symbol) => {
+    return { name, symbol };
+};
+
+// ==== * ====
 
 // displayController module
 const displayController = ( () => {
 
-    const startMenu = () => {
-        // display main menu
+    const startPage = () => {
+        htmlModule.add(document.body, 'div', 'startPageDiv', '');
+        const startPageDiv = document.getElementById('startPageDiv');
+        htmlModule.add(startPageDiv, 'button', 'start-btn', 'start');
+        // IDEA: I would like to add naughts and crosses animation with them all moving in the background.
+        const startButton = document.getElementById('start-btn');
+        startButton.onclick =  function() { 
+            playerSelectPage(startPageDiv); 
+        };
     };
 
-    const gameSetup = () => {
-      // player names and who goes first  
+    const playerSelectPage = (rmDiv) => {
+        // remove start button
+        rmDiv.remove();
+        // recreate div
+        htmlModule.add(document.body, 'div', 'playerSelectDiv', '');
+        const playerSelectDiv = document.getElementById('playerSelectDiv');
+        // add player options to new div
+        htmlModule.add(playerSelectDiv, 'button', 'onePlayerBtn', '1 Player');
+        htmlModule.add(playerSelectDiv, 'button', 'twoPlayerBtn', '2 Player');
+
+        const onePlayerBtn = document.getElementById('onePlayerBtn');
+        onePlayerBtn.onclick = function() {
+            onePlayerGame();
+        };
+        const twoPlayerBtn = document.getElementById('twoPlayerBtn');
+        twoPlayerBtn.onclick = function() {
+            twoPlayerGame(playerSelectDiv);
+        };
+
     };
+
+    // LOCAL
+
+    const onePlayerGame = () => {
+        console.log('one player game selected');
+    }
+
+    const twoPlayerGame = (rmDiv) => {
+        console.log('two player game selected');
+        rmDiv.remove();
+        // gather names of player 1 and 2
+        htmlModule.add(document.body, 'div', 'playerEntryDiv', '');
+        const playerEntryDiv = document.getElementById('playerEntryDiv');
+        htmlModule.makePlayerSelectForm(playerEntryDiv, 'playerSelectForm', 'p1Name', 'p2Name', 'text');
+    }
 
     const display = () => {
         // display the current logic from gameBoard
@@ -41,8 +84,8 @@ const displayController = ( () => {
     };
 
     return {
-        startMenu,
-        gameSetup,
+        startPage,
+        playerSelectPage,
         display,
         end
     };
@@ -75,17 +118,14 @@ const gameBoard = ( () => {
     };
 }) ();
 
-// ===========
-// Modules ---
-
+// ====
 // Name: htmlModule
-// Functions: create element, insert, makeForm
+// Functions: create element, insert, makePlayerSelectForm
 // create: creates an html element object
 // insert: inserts html object
-// makeForm: creates a form
+// makePlayerSelectForm: creates a form for the player select page
 // Use: create the html element object and then append it 
-// Example: 
-
+// ====
 
 const htmlModule = (() => {
 
@@ -143,7 +183,7 @@ const htmlModule = (() => {
         formArray.forEach(item => formElement.appendChild(item));
 
     };
-    // INTERNAL MODULE FUNCTIONS
+    // LOCAL
 
     // function for player name submit button
     const playerNameAssign = () => {
@@ -173,75 +213,11 @@ const htmlModule = (() => {
 // FUNCTIONS ---- NOTE: will have to reorganize these as I think I'm going to have ALOT of functions.
 // =========
 
-// startPage
-// Generate front page for Tic Tac Toe game
-
 // NOTE: I think I'm going to keep all of the processes in functions
-
-
-const playerMaker = (name, symbol) => {
-    return { name, symbol };
-}
-
-const playTicTacToe = () => { // [1]
-
-    const startPage = () => {
-        htmlModule.add(document.body, 'div', 'startPageDiv', '');
-        const startPageDiv = document.getElementById('startPageDiv');
-        htmlModule.add(startPageDiv, 'button', 'start-btn', 'start');
-        // IDEA: I would like to add naughts and crosses animation with them all moving in the background.
-        const startButton = document.getElementById('start-btn');
-        startButton.onclick =  function() { 
-            playerSelectPage(startPageDiv); 
-        };
-    };
-    // remove div each time or remove all contents of div?
-    // going to start with removing the div and creating a new one
-
-    const playerSelectPage = (rmDiv) => {
-        // remove start button
-        rmDiv.remove();
-        // recreate div
-        htmlModule.add(document.body, 'div', 'playerSelectDiv', '');
-        const playerSelectDiv = document.getElementById('playerSelectDiv');
-        // add player options to new div
-        htmlModule.add(playerSelectDiv, 'button', 'onePlayerBtn', '1 Player');
-        htmlModule.add(playerSelectDiv, 'button', 'twoPlayerBtn', '2 Player');
-
-        const onePlayerBtn = document.getElementById('onePlayerBtn');
-        onePlayerBtn.onclick = function() {
-            onePlayerGame();
-        };
-        const twoPlayerBtn = document.getElementById('twoPlayerBtn');
-        twoPlayerBtn.onclick = function() {
-            twoPlayerGame(playerSelectDiv);
-        };
-
-    }
-
-    const onePlayerGame = () => {
-        console.log('one player game selected');
-    }
-
-    const twoPlayerGame = (rmDiv) => {
-        console.log('two player game selected');
-        rmDiv.remove();
-        // gather names of player 1 and 2
-        htmlModule.add(document.body, 'div', 'playerEntryDiv', '');
-        const playerEntryDiv = document.getElementById('playerEntryDiv');
-        htmlModule.makePlayerSelectForm(playerEntryDiv, 'playerSelectForm', 'p1Name', 'p2Name', 'text');
-    }
-
-
-
-    startPage();
-}; // [1]
-
-playTicTacToe();
 
 // Features to add:
 // -- symbol select at player select screen
 // -- single player game against the AI
 // -- Themes for the game; this would be a good way to practice my CSS styling 
 
-
+displayController.startPage();
