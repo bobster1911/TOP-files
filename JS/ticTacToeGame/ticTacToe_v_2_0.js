@@ -26,8 +26,10 @@ const playerMaker = (name, symbol) => {
 // ==== * ====
 
 // displayController module
+// ========================
 const displayController = ( () => {
-
+// pre-game pages
+// ==============
     const startPage = () => {
         htmlModule.add(document.body, 'div', 'startPageDiv', '');
         const startPageDiv = document.getElementById('startPageDiv');
@@ -59,8 +61,6 @@ const displayController = ( () => {
         };
 
     };
-
-    // LOCAL
 
     const onePlayerGame = () => {
         console.log('one player game selected');
@@ -97,6 +97,15 @@ const gameBoard = ( () => {
 
     const generate = () => {
         // generate the blank array for gameboard
+        htmlModule.add(document.body, 'div', 'gameBoardDiv');
+        //const gameBoardDiv = document.getElementById('gameBoardDiv');
+
+        const boardArray = new Array(9);
+        const numArrayItems = boardArray.length;
+        
+        boardArray.forEach((item) => {
+
+        })
     };
 
     const update = () => {
@@ -120,6 +129,7 @@ const gameBoard = ( () => {
 
 // ====
 // Name: htmlModule
+// Description: functions for creating html content for the displayController module
 // Functions: create element, insert, makePlayerSelectForm
 // create: creates an html element object
 // insert: inserts html object
@@ -135,13 +145,15 @@ const htmlModule = (() => {
         element.setAttribute('id', `${idName}`);
         element.innerHTML = `${contents}`;
         location.appendChild(element);
-    }
+    } // end
+
     // creates and inserts element to specific location for when multiple elements in a node
     const insert = (parentNode, reference, type, idName) => {
         const element = document.createElement(`${type}`);
         element.setAttribute('id', `${idName}`);
         parentNode.insertBefore(element, reference);
-    }
+    } // end
+
     // creates custom form
     const makePlayerSelectForm = (location, formId, inputOneId, inputTwoId, inputType) => {
         const formElement = document.createElement('form');
@@ -150,18 +162,18 @@ const htmlModule = (() => {
 
         const formLabelOne = document.createElement('label');
         formLabelOne.setAttribute('for', 'playerOneName');
-        formLabelOne.innerHTML = 'Player 1: '
+        formLabelOne.innerHTML = 'Player 1 (X): '
         const formInput1 = document.createElement('input');
         formInput1.setAttribute('type', `${inputType}`);
         formInput1.setAttribute('id', `${inputOneId}`);
 
         const formLabelTwo = document.createElement('label');
         formLabelTwo.setAttribute('for', 'playerTwoName');
-        formLabelTwo.innerHTML = 'Player 2: '
+        formLabelTwo.innerHTML = 'Player 2 (O): '
         const formInput2 = document.createElement('input');
         formInput2.setAttribute('type', `${inputType}`);
         formInput2.setAttribute('id', `${inputTwoId}`);
-
+        // submit button for player entry form
         const formSubmitBtn = document.createElement('button');
         formSubmitBtn.setAttribute('id', 'formSubmitBtn');
         formSubmitBtn.setAttribute('type', 'button'); // set button type to stop page refresh? look into this
@@ -182,8 +194,7 @@ const htmlModule = (() => {
 
         formArray.forEach(item => formElement.appendChild(item));
 
-    };
-    // LOCAL
+    }; // end
 
     // function for player name submit button
     const playerNameAssign = () => {
@@ -191,6 +202,9 @@ const htmlModule = (() => {
         const playerTwoName = document.getElementById('p2Name').value;
         const player1 = playerMaker(playerOneName, 'X');
         const player2 = playerMaker(playerTwoName, 'O');
+        console.log(player1, player2);
+        // function to generate the array
+        gameBoard.generate();
     }
 
     return { 
