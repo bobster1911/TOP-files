@@ -95,17 +95,20 @@ const displayController = ( () => {
 
 const gameBoard = ( () => {
 
-    const generate = () => {
+    const generate = (p1, p2) => {
+
+        // remove contents of previous div
+        playerEntryDiv.remove();
         // generate the blank array for gameboard
         htmlModule.add(document.body, 'div', 'gameBoardDiv');
-        //const gameBoardDiv = document.getElementById('gameBoardDiv');
+        // create blank array
+        const blankArray = createArray(9);
+        // create div elements from blank array
+        const blankArrayDivs = blankArray.map(createDivElement);
+        blankArrayDivs.forEach((divElement) => {
+            document.body.appendChild(divElement);
+        });
 
-        const boardArray = new Array(9);
-        const numArrayItems = boardArray.length;
-        
-        boardArray.forEach((item) => {
-
-        })
     };
 
     const update = () => {
@@ -117,6 +120,16 @@ const gameBoard = ( () => {
         // check for empty cells
         // check for 3-in-a-row conditions
         // check for draw conditions (all cells used but no 3-in-a-row)
+    }
+
+    // Internal functions
+    // ===
+
+    // function to create div element for each item in array
+    const createDivElement = (content) => {
+        const divElement = document.createElement('div');
+        divElement.textContent = content;
+        return divElement;
     }
 
     return {
@@ -197,14 +210,14 @@ const htmlModule = (() => {
     }; // end
 
     // function for player name submit button
-    const playerNameAssign = () => {
+    const playerNameAssign = () => { 
         const playerOneName = document.getElementById('p1Name').value;
         const playerTwoName = document.getElementById('p2Name').value;
         const player1 = playerMaker(playerOneName, 'X');
         const player2 = playerMaker(playerTwoName, 'O');
-        console.log(player1, player2);
+        
         // function to generate the array
-        gameBoard.generate();
+        gameBoard.generate(player1, player2); // pass player objects to be used in later function
     }
 
     return { 
@@ -226,6 +239,10 @@ const htmlModule = (() => {
 
 // FUNCTIONS ---- NOTE: will have to reorganize these as I think I'm going to have ALOT of functions.
 // =========
+
+// create an array of size x
+const createArray = (x) => Array.from({ length: x }, (_, index) => index + 1);
+
 
 // NOTE: I think I'm going to keep all of the processes in functions
 
