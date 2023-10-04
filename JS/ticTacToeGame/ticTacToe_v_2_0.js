@@ -66,7 +66,7 @@ const displayController = ( () => {
         console.log('one player game selected');
     }
 
-    const twoPlayerGame = (rmDiv) => {
+    const twoPlayerGame = (rmDiv) => { // maybe didn't need to pass the rmDiv - check this
         console.log('two player game selected');
         rmDiv.remove();
         // gather names of player 1 and 2
@@ -100,13 +100,17 @@ const gameBoard = ( () => {
         // remove contents of previous div
         playerEntryDiv.remove();
         // generate the blank array for gameboard
-        htmlModule.add(document.body, 'div', 'gameBoardDiv');
+        htmlModule.add(document.body, 'div', 'gameBoardDiv', '');
         // create blank array
         const blankArray = createArray(9);
         // create div elements from blank array
         const blankArrayDivs = blankArray.map(createDivElement);
-        blankArrayDivs.forEach((divElement) => {
-            document.body.appendChild(divElement);
+        blankArrayDivs.forEach((divElement, index) => {
+            // create id for element
+            divElement.setAttribute('id', `gridDiv${index+1}`);
+            divElement.setAttribute('class', 'gridDiv');
+            // might want to configure class for these.. will see
+            gameBoardDiv.appendChild(divElement);
         });
 
     };
@@ -241,7 +245,7 @@ const htmlModule = (() => {
 // =========
 
 // create an array of size x
-const createArray = (x) => Array.from({ length: x }, (_, index) => index + 1);
+const createArray = (x) => Array.from({ length: x }, );
 
 
 // NOTE: I think I'm going to keep all of the processes in functions
