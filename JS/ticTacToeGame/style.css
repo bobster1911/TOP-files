@@ -1,3 +1,15 @@
+
+
+/* Table of Contents 
+
+ 1. 
+ 2.
+ 3. 
+
+*/
+
+/* Global Styles */
+
 body {
     display: grid;
     grid-template-columns: 15% 70% 15%;
@@ -6,12 +18,47 @@ body {
         '. header .'
         '. main .'
         '. footer .';
+    place-items: center;
+}
+/* General Styling */
+
+.form-row {
+    padding-bottom: 5px;
+}
+
+.form-btn {
+    
+}
+
+.mainDiv {
+    display: grid;
+    grid-area: main;
+    place-items: center;
 }
 
 #main-header {
     display: grid;
     grid-area: header;
+    place-items: center;
+
 }
+
+#playerSelectForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#playerSelectForm button {
+    margin: 10px;
+    width: 50%;
+}
+
+/* Gameboard Styles */
+
+/* .game-btns {
+   */ 
+
 .gridDiv {
     display: flex;
     height: 14vw;
@@ -24,6 +71,7 @@ body {
     background-color: lightcyan;
 }
 
+
 #gameBoardDiv {
     display: grid;
     grid-area: main;
@@ -35,6 +83,8 @@ body {
     border-color: black;
     border-style: solid;   
 }
+
+
 
 
 #div0 {

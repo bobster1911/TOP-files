@@ -26,16 +26,21 @@ const playerMaker = (name, symbol) => {
 // ==== * ====
 
 // displayController module
-// ========================
+
 const displayController = ( () => {
-// pre-game pages
-// ==============
+
+// Pages
+
     const startPage = () => {
         htmlModule.add(document.body, 'div', 'startPageDiv', '');
         const startPageDiv = document.getElementById('startPageDiv');
         htmlModule.add(startPageDiv, 'button', 'start-btn', 'start');
         // IDEA: I would like to add naughts and crosses animation with them all moving in the background.
         const startButton = document.getElementById('start-btn');
+
+        startPageDiv.setAttribute('class', 'mainDiv');
+        startButton.setAttribute('class', 'game-btns');
+
         startButton.onclick =  function() { 
             playerSelectPage(startPageDiv); 
         };
@@ -47,19 +52,24 @@ const displayController = ( () => {
         // recreate div
         htmlModule.add(document.body, 'div', 'playerSelectDiv', '');
         const playerSelectDiv = document.getElementById('playerSelectDiv');
+        playerSelectDiv.setAttribute('class', 'mainDiv');
         // add player options to new div
         htmlModule.add(playerSelectDiv, 'button', 'onePlayerBtn', '1 Player');
         htmlModule.add(playerSelectDiv, 'button', 'twoPlayerBtn', '2 Player');
 
         const onePlayerBtn = document.getElementById('onePlayerBtn');
-        onePlayerBtn.onclick = function() {
+        onePlayerBtn.onclick = () => {
             onePlayerGame();
         };
         const twoPlayerBtn = document.getElementById('twoPlayerBtn');
-        twoPlayerBtn.onclick = function() {
+        
+        twoPlayerBtn.onclick = () => {
+            console.log('test');
             twoPlayerGame(playerSelectDiv);
         };
 
+        onePlayerBtn.setAttribute('class', 'game-btns');
+        twoPlayerBtn.setAttribute('class', 'game-btns');
     };
 
     const onePlayerGame = () => {
@@ -72,6 +82,7 @@ const displayController = ( () => {
         // gather names of player 1 and 2
         htmlModule.add(document.body, 'div', 'playerEntryDiv', '');
         const playerEntryDiv = document.getElementById('playerEntryDiv');
+        playerEntryDiv.setAttribute('class', 'mainDiv');
         htmlModule.makePlayerSelectForm(playerEntryDiv, 'playerSelectForm', 'p1Name', 'p2Name', 'text');
     }
 
@@ -157,7 +168,7 @@ const gameBoard = ( () => {
 const htmlModule = (() => {
 
     // creates and adds element 
-    const add = (location, type, idName, contents) => {
+    const add = (location, type, idName = 'defaultId', contents) => {
         const element = document.createElement(`${type}`); // string literal to parse the variable
         element.setAttribute('id', `${idName}`);
         element.innerHTML = `${contents}`;
@@ -173,26 +184,45 @@ const htmlModule = (() => {
 
     // creates custom form
     const makePlayerSelectForm = (location, formId, inputOneId, inputTwoId, inputType) => {
+
         const formElement = document.createElement('form');
         formElement.setAttribute('id', `${formId}`);
         location.appendChild(formElement);
 
+        const firstRowDiv = document.createElement('div');
+        firstRowDiv.setAttribute('class', 'form-row');
+        formElement.appendChild(firstRowDiv);
+
         const formLabelOne = document.createElement('label');
         formLabelOne.setAttribute('for', 'playerOneName');
-        formLabelOne.innerHTML = 'Player 1 (X): '
+        formLabelOne.innerHTML = 'Player 1 (X): ';
+
         const formInput1 = document.createElement('input');
         formInput1.setAttribute('type', `${inputType}`);
         formInput1.setAttribute('id', `${inputOneId}`);
 
+        firstRowDiv.appendChild(formLabelOne);
+        firstRowDiv.appendChild(formInput1);
+
+        const secondRowDiv = document.createElement('div');
+        secondRowDiv.setAttribute('class', 'form-row');
+        formElement.appendChild(secondRowDiv);
+
         const formLabelTwo = document.createElement('label');
         formLabelTwo.setAttribute('for', 'playerTwoName');
-        formLabelTwo.innerHTML = 'Player 2 (O): '
+        formLabelTwo.innerHTML = 'Player 2 (O): ';
+
         const formInput2 = document.createElement('input');
         formInput2.setAttribute('type', `${inputType}`);
         formInput2.setAttribute('id', `${inputTwoId}`);
+
+        secondRowDiv.appendChild(formLabelTwo);
+        secondRowDiv.appendChild(formInput2);
+
+
         // submit button for player entry form
         const formSubmitBtn = document.createElement('button');
-        formSubmitBtn.setAttribute('id', 'formSubmitBtn');
+        formSubmitBtn.setAttribute('class', 'form-btn');
         formSubmitBtn.setAttribute('type', 'button'); // set button type to stop page refresh? look into this
         formSubmitBtn.innerHTML = 'Ready!';
         formSubmitBtn.addEventListener('click', function () {
@@ -200,16 +230,9 @@ const htmlModule = (() => {
             // create player objects using strings in form fields
             // how to reference each player...
         });
+        formElement.appendChild(formSubmitBtn);
         
         // trying out an iterative approach to appending all the elements for the form.
-        const formArray = [];
-        formArray.push(formLabelOne);
-        formArray.push(formInput1);
-        formArray.push(formLabelTwo);
-        formArray.push(formInput2);
-        formArray.push(formSubmitBtn);
-
-        formArray.forEach(item => formElement.appendChild(item));
 
     }; // end
 
@@ -247,12 +270,24 @@ const htmlModule = (() => {
 // create an array of size x
 const createArray = (x) => Array.from({ length: x }, );
 
+// EXECUTABLE
 
-// NOTE: I think I'm going to keep all of the processes in functions
+displayController.startPage();
 
-// Features to add:
+// FEATURES TO ADD:
 // -- symbol select at player select screen
 // -- single player game against the AI
 // -- Themes for the game; this would be a good way to practice my CSS styling 
 
-displayController.startPage();
+// Next steps
+// ==========
+
+// Need to create a div that displays the current player []
+// create a new array when a div is clicked, then map the new array to the display controller
+// add a footer 
+
+// NOTES
+// =====
+// when I finish tic tac toe, I'm going to start a side-project where I start building my website out as far as I possibly
+// can with my current skills and then add to it and tweak it as I learn.
+// - This is mainly so I can start putting together my recipe compiling, meal planner application
