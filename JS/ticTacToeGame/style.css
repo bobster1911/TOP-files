@@ -63,7 +63,10 @@ body {
     display: flex;
     height: 14vw;
     border-color: black;
+    font-size: 8vw;
     border-style: solid;
+    align-items: center;
+    justify-content: center;
     
 }
 

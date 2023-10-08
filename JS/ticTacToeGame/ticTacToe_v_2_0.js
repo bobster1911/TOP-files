@@ -76,7 +76,7 @@ const displayController = ( () => {
         console.log('one player game selected');
     }
 
-    const twoPlayerGame = (rmDiv) => { // maybe didn't need to pass the rmDiv - check this
+    const twoPlayerGame = (rmDiv) => { // NOTE: maybe didn't need to pass the rmDiv - check this
         console.log('two player game selected');
         rmDiv.remove();
         // gather names of player 1 and 2
@@ -106,8 +106,10 @@ const displayController = ( () => {
 
 const gameBoard = ( () => {
 
+    
+    
     const generate = (p1, p2) => {
-
+        console.log(p1, p2);
         // remove contents of previous div
         playerEntryDiv.remove();
         // generate the blank array for gameboard
@@ -120,6 +122,10 @@ const gameBoard = ( () => {
             // create id for element
             divElement.setAttribute('id', `gridDiv${index+1}`);
             divElement.setAttribute('class', 'gridDiv');
+            // onclick function
+            divElement.addEventListener('click', () => {
+                playerMove(event, currentPlayerSymbol);
+            })
             // might want to configure class for these.. will see
             gameBoardDiv.appendChild(divElement);
         });
@@ -128,7 +134,7 @@ const gameBoard = ( () => {
 
     const update = () => {
         // update the gameboard array based on last player's move
-        // alternate who's turn it is
+
     };
 
     const check = () => {
@@ -145,6 +151,25 @@ const gameBoard = ( () => {
         const divElement = document.createElement('div');
         divElement.textContent = content;
         return divElement;
+    }
+
+    let currentPlayerSymbol = 'X';
+
+    const playerMove = (event, symbol) => {
+        event.target.innerHTML = symbol;
+        // function to update array logic
+        // function to check array
+        // change player symbol
+        currentPlayerSymbol = changePlayer(currentPlayerSymbol);
+    }
+
+    const changePlayer = (currentSymbol) => {
+        // "If currentSymbol is equal to 'X', return 'O'; otherwise, return 'X'."
+        return currentSymbol === 'X' ? 'O' : 'X';
+    }
+
+    const updateArray = (x) => {
+        
     }
 
     return {
